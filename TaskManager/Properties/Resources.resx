@@ -136,16 +136,16 @@
   <data name="CarLoginCreateAccount1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\picture\CarLoginCreateAccount.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="closedeye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\picture\closedeye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="CarLoginCreateAccount" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\picture\CarLoginCreateAccount.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mounten" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\picture\mounten.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Login" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\picture\Login.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="closedeye" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\picture\closedeye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mounten1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\picture\mounten.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -20,8 +20,9 @@ namespace TaskManager
     
     public partial class Form1 : Form
     {
-        string defaultPassword = "dsd";
+        //string defaultPassword = "dsd";
         DataBase dataBase = new DataBase();
+        int key = 1;
         public Form1()
         {
             InitializeComponent();
@@ -35,6 +36,9 @@ namespace TaskManager
             textBox2.ForeColor = Color.Silver;
             button3.BackgroundImage = Properties.Resources.closedeye;
             StartPosition = FormStartPosition.CenterScreen;
+            panel2.Visible = false;
+            textBox4.Text = "E-mail";
+            textBox4.ForeColor = Color.Silver;
         }
         static void SetRoundedShape(Control control, int radius)
         {
@@ -152,8 +156,8 @@ namespace TaskManager
 
             } else
             {
-                //textBox1.Text = "example@gmail.com";
-                //textBox1.ForeColor = Color.Silver;
+                textBox1.Text = "example@gmail.com";
+                textBox1.ForeColor = Color.Silver;
                 textBox2.Text = "************";
                 textBox2.ForeColor = Color.Silver;
                 MessageBox.Show("Непарвильный формат ввода почты");
@@ -162,26 +166,97 @@ namespace TaskManager
 
         private void button4_Click(object sender, EventArgs e)
         {
-            MailAddress from = new MailAddress("testerov9911@mail.ru", "Администрация приложения Avto");
-            MailAddress to = new MailAddress(textBox1.Text);
-            MailMessage m = new MailMessage(from, to);
-            m.Subject = "Восстановление пароля";
-            m.Body = "Ваш новый пароль: ";
-            m.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient("smtp.mail.ru", 587);
-            smtp.Credentials = new NetworkCredential("testerov9911@mail.ru", "XLFqLGzHAHf4PVF3anWE");
-            smtp.EnableSsl = true;
-            
+            panel2.Visible = true;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
             try
             {
-                smtp.Send(m);
-                MessageBox.Show("Сообщение отпралено");
-            }
-            catch
+                MailAddress from = new MailAddress("testerov9911@mail.ru", "Администрация приложения Avto");
+                MailAddress to = new MailAddress(textBox4.Text);
+                MailMessage m = new MailMessage(from, to);
+                m.Subject = "Восстановление пароля";
+                string str21 = newPasswordAccount();
+                m.Body = $"Ваш новый пароль: {str21}";
+                m.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("smtp.mail.ru", 587);
+                smtp.Credentials = new NetworkCredential("testerov9911@mail.ru", "XLFqLGzHAHf4PVF3anWE");
+                smtp.EnableSsl = true;
+                panel2.Visible = false;
+                try
+                {
+                    smtp.Send(m);
+                    MessageBox.Show("Сообщение отпралено");
+                    ChangePassword(str21);
+                }
+                catch
+                {
+                    MessageBox.Show("Сообщение не отпралено");
+                }
+                Console.Read();
+                textBox4.Text = "";
+            } catch
             {
-                MessageBox.Show("Сообщение не отпралено");
+                MessageBox.Show("Ошибка в вводе почты!");
             }
-            Console.Read();  
+        }
+
+        private void textBox4_Enter_1(object sender, EventArgs e)
+        {
+            if (textBox4.Text == "E-mail")
+            {
+                textBox4.Text = "";
+                textBox4.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBox4_Leave_1(object sender, EventArgs e)
+        {
+            if (textBox4.Text == "")
+            {
+                textBox4.Text = "E-mail";
+                textBox4.ForeColor = Color.Silver;
+            }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+        }
+        private string newPasswordAccount()
+        {
+            Random rnd = new Random();
+
+            string value = rnd.Next(100000,1000000).ToString();
+            int key = rnd.Next(1,127);
+            dataBase.openConnection();
+            SqlCommand sqlCom = new SqlCommand($"SELECT names FROM accounts_db WHERE emails = '{textBox4.Text}'", dataBase.getConnection());
+            string str = sqlCom.ExecuteScalar().ToString();
+            str = str + value;
+            char[] chars = str.ToCharArray();
+            for (int i = 0; i < str.Length; i++)
+            {
+                int c = str[i];
+                c = (c + key) % 128;
+                chars[i] = (char)c;
+            }
+            string str1 = new string(chars);
+            dataBase.closedConnection();
+            return str1;
+
+        }
+        private void ChangePassword(string newPassword)
+        {
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+
+            string querystring = $"UPDATE accounts_db SET passwords = '{Hashing.PasswordHashing(newPassword)}' WHERE emails = '{textBox4.Text}'";
+
+            SqlCommand sqlCommand = new SqlCommand(querystring, dataBase.getConnection());
+
+            sqlDataAdapter.SelectCommand = sqlCommand;
+            sqlDataAdapter.Fill(dt);
         }
     }
 }
