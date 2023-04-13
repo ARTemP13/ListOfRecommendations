@@ -40,7 +40,7 @@ namespace TaskManager
             textBox4.Text = "E-mail";
             textBox4.ForeColor = Color.Silver;
         }
-        static void SetRoundedShape(Control control, int radius)
+        public static void SetRoundedShape(Control control, int radius)
         {
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
             path.AddLine(radius, 0, control.Width - radius, 0);
