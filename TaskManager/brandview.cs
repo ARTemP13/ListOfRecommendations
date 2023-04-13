@@ -20,7 +20,7 @@ namespace TaskManager
             priceTo.Text = "100.000.000";
             priceTo.ForeColor = Color.Silver;
             //priceTo.Font = new Font(priceTo.Font.FontFamily, 12);
-            prieceFrom.Text = "1.0";
+            prieceFrom.Text = "1";
             prieceFrom.ForeColor = Color.Silver;
             speedFrom.Text = "1";
             speedFrom.ForeColor = Color.Silver;
@@ -56,7 +56,7 @@ namespace TaskManager
 
         private void prieceFrom_Enter(object sender, EventArgs e)
         {
-            if(prieceFrom.Text == "1.0")
+            if(prieceFrom.Text == "1")
             {
                 prieceFrom.Text = "";
                 prieceFrom.ForeColor = Color.Black;
@@ -67,7 +67,7 @@ namespace TaskManager
         {
             if (prieceFrom.Text == "")
             {
-                prieceFrom.Text = "1.0";
+                prieceFrom.Text = "1";
                 prieceFrom.ForeColor = Color.Silver;
             }
         }

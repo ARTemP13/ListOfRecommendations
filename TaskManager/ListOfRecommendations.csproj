@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="picture\BackGround2.jpg" />
+    <Content Include="picture\BMWX5.jpg" />
     <Content Include="picture\Logo2.png" />
     <Content Include="picture\BackGroung.jpg" />
     <Content Include="picture\Logo.png" />

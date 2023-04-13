@@ -37,6 +37,8 @@
             this.selectionsButton = new System.Windows.Forms.Button();
             this.FeaturesButton = new System.Windows.Forms.Button();
             this.ReccomendationLabel = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.PlusCar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,9 +54,6 @@
             // 
             // AvtoLogo
             // 
-            this.AvtoLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.AvtoLogo.AutoSize = true;
             this.AvtoLogo.BackColor = System.Drawing.Color.Transparent;
             this.AvtoLogo.Font = new System.Drawing.Font("Segoe UI Variable Display", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -66,9 +65,6 @@
             // 
             // pictureLogo
             // 
-            this.pictureLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureLogo.BackColor = System.Drawing.Color.Transparent;
             this.pictureLogo.BackgroundImage = global::TaskManager.Properties.Resources.Logo2;
             this.pictureLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -141,6 +137,33 @@
             this.ReccomendationLabel.TabIndex = 12;
             this.ReccomendationLabel.Text = "Предложения";
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(213, 119);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 15, 15, 15);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(987, 614);
+            this.flowLayoutPanel1.TabIndex = 13;
+            this.flowLayoutPanel1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.flowLayoutPanel1_Scroll);
+            // 
+            // PlusCar
+            // 
+            this.PlusCar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.PlusCar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PlusCar.FlatAppearance.BorderSize = 0;
+            this.PlusCar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PlusCar.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PlusCar.Location = new System.Drawing.Point(13, 403);
+            this.PlusCar.Name = "PlusCar";
+            this.PlusCar.Size = new System.Drawing.Size(168, 54);
+            this.PlusCar.TabIndex = 14;
+            this.PlusCar.Text = "Добавить машину";
+            this.PlusCar.UseVisualStyleBackColor = false;
+            // 
             // MainApplicationList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -148,6 +171,8 @@
             this.BackgroundImage = global::TaskManager.Properties.Resources.BackGround2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1191, 735);
+            this.Controls.Add(this.PlusCar);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.ReccomendationLabel);
             this.Controls.Add(this.FeaturesButton);
             this.Controls.Add(this.selectionsButton);
@@ -174,5 +199,7 @@
         private System.Windows.Forms.Button selectionsButton;
         private System.Windows.Forms.Button FeaturesButton;
         private System.Windows.Forms.Label ReccomendationLabel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button PlusCar;
     }
 }
