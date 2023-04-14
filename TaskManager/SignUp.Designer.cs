@@ -69,6 +69,7 @@
             this.button3.BackColor = System.Drawing.SystemColors.MenuBar;
             this.button3.BackgroundImage = global::TaskManager.Properties.Resources.closedeye;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Location = new System.Drawing.Point(409, 432);

@@ -110,6 +110,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="picture\Plus1.png" />
+    <Content Include="picture\StarFill.png" />
+    <Content Include="picture\StarEmpty.png" />
+    <Content Include="picture\LikeFill.png" />
+    <Content Include="picture\LikeEmpty.png" />
+    <Content Include="picture\plus.png" />
     <Content Include="picture\BackGround2.jpg" />
     <Content Include="picture\BMWX5.jpg" />
     <Content Include="picture\Logo2.png" />

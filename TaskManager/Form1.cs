@@ -20,9 +20,7 @@ namespace TaskManager
     
     public partial class Form1 : Form
     {
-        //string defaultPassword = "dsd";
         DataBase dataBase = new DataBase();
-        int key = 1;
         public Form1()
         {
             InitializeComponent();
