@@ -110,6 +110,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cars\BMWX5.jpg" />
+    <Content Include="Cars\KIACeed.jpg" />
+    <Content Include="Cars\KIAOptima.jpg" />
+    <Content Include="Cars\KIARio.jpg" />
+    <Content Include="Cars\KIASorento.jpg" />
+    <Content Include="Cars\KIASportage.jpg" />
+    <Content Include="Cars\KIAStinger.jpg" />
     <Content Include="picture\Plus1.png" />
     <Content Include="picture\StarFill.png" />
     <Content Include="picture\StarEmpty.png" />

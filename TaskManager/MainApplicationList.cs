@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace TaskManager
     public partial class MainApplicationList : Form
 
     {
+        DataBase dataBase = new DataBase();
         public class CustomFlowLayoutPanel : FlowLayoutPanel
         {
             public CustomFlowLayoutPanel()
@@ -40,8 +42,8 @@ namespace TaskManager
                 }
             }
         }
-        PictureBox pictureBox2 = new PictureBox();
-        public MainApplicationList()
+        string ThisEmail;
+        public MainApplicationList(string email)
         {
             InitializeComponent();
             DoubleBuffered = true;
@@ -49,122 +51,170 @@ namespace TaskManager
             SetRoundedShape(selectionsButton, 40);
             SetRoundedShape(FeaturesButton, 40);
             SetRoundedShape(PlusCar, 40);
+            ThisEmail = email;
+            CreateCards();
+            
+        }
+        public void CreateCards()
+        {
             CustomFlowLayoutPanel panel1 = new CustomFlowLayoutPanel();
             panel1.FlowDirection = FlowDirection.LeftToRight;
             panel1.AutoSize = true;
-
-            Panel panel3 = new Panel();
-
-            PictureBox pictureBox = new PictureBox();
-            pictureBox.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/BMWX5.jpg");
-            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox.Width = 400;
-            pictureBox.Height = 300;
-            panel3.Controls.Add(pictureBox);
-
-            panel3.BackColor = Color.White;
-            panel3.Size = new Size(950, 300);
-            //panel3.Padding = new Padding(0,15,15,15);
-            panel1.Controls.Add(panel3);
-
-            Label label = new Label();
-            label.Text = "BMW X5";
-            label.Location = new Point(420, 10);
-            label.AutoSize = true;
-            label.Font = new Font("Segoe UI Variable Display Semib", 20, FontStyle.Bold);
-            panel3.Controls.Add(label);
-
-            Label label1 = new Label();
-            label1.Text = "Цена:  10.000.000₽";
-            label1.Location = new Point(410, 80);
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Variable Display Semib", 16);
-            panel3.Controls.Add(label1);
-
-            Label label2 = new Label();
-            label2.Text = "Максимальная скорость: 210 км/ч";
-            label2.Location = new Point(410, 120);
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Variable Display Semib", 16);
-            panel3.Controls.Add(label2);
-
-            Label label3 = new Label();
-            label3.Text = "Мощность: 300 л.c";
-            label3.Location = new Point(410, 160);
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Variable Display Semib", 16);
-            panel3.Controls.Add(label3);
-
-            SetRoundedShape(panel3, 40);
-
-            PictureBox pictureBox1 = new PictureBox();
-            pictureBox1.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/Plus1.png");
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.Width = 50;
-            pictureBox1.Height = 50;
-            pictureBox1.Location = new Point(650,240);
-            panel3.Controls.Add(pictureBox1);
-
-            
-            pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png");
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.Enabled = true;
-            pictureBox2.Cursor = Cursors.Hand;
-            pictureBox2.Width = 40;
-            pictureBox2.Height = 30;
-            pictureBox2.Location = new Point(700, 250);
-            pictureBox2.Click += pictureBox2_Click;
-            panel3.Controls.Add(pictureBox2);
-
-            PictureBox[] stars = new PictureBox[5];
-            for (int i = 0; i < stars.Length; i++)
+            dataBase.openConnection();
+            string queryTable = $"SELECT names, surnames FROM accounts_db WHERE emails = '{ThisEmail}';";
+            SqlCommand command = new SqlCommand(queryTable, dataBase.getConnection());
+            SqlDataReader reader = command.ExecuteReader();
+            string name = "", surname = "";
+            if (reader.Read())
             {
-                stars[i] = new PictureBox();
-                stars[i].Location = new Point(i*30 + 750, 250);
-                stars[i].Size = new Size(30, 30);
-                stars[i].SizeMode = PictureBoxSizeMode.StretchImage;
-                stars[i].Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/StarEmpty.png");
-                panel3.Controls.Add(stars[i]);
+                name = reader.GetString(0);
+                surname = reader.GetString(1);
             }
+            reader.Close();
 
-
-
-
-
-            Panel panel4 = new Panel();
-            panel4.BackColor = Color.White;
-            panel4.Size = new Size(940, 300);
-            panel4.Padding = new Padding(0, 15, 15, 15);
-            panel1.Controls.Add(panel4);
-
-            Panel panel5 = new Panel();
-            panel5.BackColor = Color.White;
-            panel5.Size = new Size(940, 300);
-            panel5.Padding = new Padding(0, 15, 15, 15);
-            panel1.Controls.Add(panel5);
-
-            Panel panel6 = new Panel();
-            panel6.BackColor = Color.White;
-            panel6.Size = new Size(940, 300);
-            panel6.Padding = new Padding(0, 15, 15, 15);
-            panel1.Controls.Add(panel6);
-
-            foreach (Control control in panel1.Controls)
+            string query1 = $"SELECT COUNT(*) FROM {name}{surname}Table WHERE priceRUB >= MinPrice AND priceRUB <= MaxPrice AND maxspeed >= MinSpeed AND maxspeed <= MxSpeed AND horsepower >= mPower AND horsepower <= MxPower AND CarsSelect = 1";
+            SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
+            int rowCount = 0;
+            rowCount = (int)command1.ExecuteScalar();
+            //MessageBox.Show(rowCount + "------");
+            List<string> car = new List<string>();
+            List<string> model = new List<string>();
+            List<int> price = new List<int>();
+            List<int> speed = new List<int>();
+            List<int> power = new List<int>();
+            List<string> country = new List<string>();
+            List<int> score = new List<int>();
+            List<int> favorite = new List<int>();
+            string query2 = $"SELECT brand, model, priceRUB, maxspeed, horsepower, country, Score, Favorites FROM {name}{surname}Table WHERE priceRUB >= MinPrice AND priceRUB <= MaxPrice AND maxspeed >= MinSpeed AND maxspeed <= MxSpeed AND horsepower >= mPower AND horsepower <= MxPower AND CarsSelect = 1";
+            SqlCommand command2 = new SqlCommand(query2, dataBase.getConnection());
+            using (SqlDataReader reader3 = command2.ExecuteReader())
             {
-                control.Margin = new Padding(-1, 10, 10, 10);
+                while (reader3.Read())
+                {
+                    car.Add(reader3.GetString(0));
+                    model.Add(reader3.GetString(1));
+                    price.Add(reader3.GetInt32(2));
+                    speed.Add(reader3.GetInt32(3));
+                    power.Add(reader3.GetInt32(4));
+                    country.Add(reader3.GetString(5));
+                    score.Add(reader3.GetInt32(6));
+                    favorite.Add(reader3.GetInt32(7));
+                }
             }
+            for (int i = 0; i < rowCount; i++)
+            {
+                Panel panel3 = new Panel();
 
-            flowLayoutPanel1.Controls.Add(panel1);
+                PictureBox pictureBox = new PictureBox();
+                try
+                {
+                    pictureBox.Image = Image.FromFile($"C:/Users/Артем/source/repos/TaskManager/TaskManager/Cars/{car[i]}{model[i]}.jpg");
+                } catch { 
+                }
+                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox.Width = 400;
+                pictureBox.Height = 300;
+                panel3.Controls.Add(pictureBox);
+
+                panel3.BackColor = Color.White;
+                panel3.Size = new Size(950, 300);
+                panel1.Controls.Add(panel3);
+
+                Label label = new Label();
+                label.Text = $"{car[i]} {model[i]}";
+                label.Location = new Point(420, 10);
+                label.AutoSize = true;
+                label.Font = new Font("Segoe UI Variable Display Semib", 20, FontStyle.Bold);
+                panel3.Controls.Add(label);
+
+                Label label1 = new Label();
+                label1.Text = $"Цена:  {price[i]}₽";
+                label1.Location = new Point(410, 80);
+                label1.AutoSize = true;
+                label1.Font = new Font("Segoe UI Variable Display Semib", 16);
+                panel3.Controls.Add(label1);
+
+                Label label2 = new Label();
+                label2.Text = $"Максимальная скорость: {speed[i]} км/ч";
+                label2.Location = new Point(410, 120);
+                label2.AutoSize = true;
+                label2.Font = new Font("Segoe UI Variable Display Semib", 16);
+                panel3.Controls.Add(label2);
+
+                Label label3 = new Label();
+                label3.Text = $"Мощность: {power[i]} л.c";
+                label3.Location = new Point(410, 160);
+                label3.AutoSize = true;
+                label3.Font = new Font("Segoe UI Variable Display Semib", 16);
+                panel3.Controls.Add(label3);
+
+                Label label4 = new Label();
+                label4.Text = $"Страна: {country[i].ToString()}";
+                label4.Location = new Point(410, 200);
+                label4.AutoSize = true;
+                label4.Font = new Font("Segoe UI Variable Display Semib", 16);
+                panel3.Controls.Add(label4);
+
+                SetRoundedShape(panel3, 40);
+
+                Label label5 = new Label();
+                label5.Text = "Оценка: ";
+                label5.Location = new Point(700, 250);
+                label5.AutoSize = true;
+                label5.Font = new Font("Segoe UI Variable Display Semib", 12);
+                panel3.Controls.Add(label5);
+
+                NumericUpDown numericUpDown1 = new NumericUpDown();
+                numericUpDown1.Width = 40;
+                numericUpDown1.Height = 50;
+                numericUpDown1.Location = new Point(795, 255);
+                numericUpDown1.Maximum = 9;
+                numericUpDown1.Minimum = 0;
+                numericUpDown1.Value = score[i];
+                numericUpDown1.Cursor = Cursors.Hand;
+                panel3.Controls.Add(numericUpDown1);
+
+                PictureBox pictureBox1 = new PictureBox();
+                pictureBox1.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/Plus1.png");
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox1.Width = 50;
+                pictureBox1.Cursor = Cursors.Hand;
+                pictureBox1.Height = 50;
+                pictureBox1.Location = new Point(880, 240);
+                panel3.Controls.Add(pictureBox1);
+
+                PictureBox pictureBox2 = new PictureBox();
+                pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png");
+                pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox2.Enabled = true;
+                pictureBox2.Cursor = Cursors.Hand;
+                pictureBox2.Width = 40;
+                pictureBox2.Height = 30;
+                pictureBox2.Location = new Point(843, 250);
+                panel3.Controls.Add(pictureBox2);
+                pictureBox2.Click += new EventHandler(pictureBox2_Click);
+
+                foreach (Control control in panel1.Controls)
+                {
+                    control.Margin = new Padding(-1, 10, 10, 10);
+                }
+
+                flowLayoutPanel1.Controls.Add(panel1);
+            }
+            dataBase.closedConnection();
         }
         public void pictureBox2_Click(object sender, EventArgs e)
         {
-            if(pictureBox2.Image == Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png"))
-            {
-                pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeFill.png");
-            }
-            else if(pictureBox2.Image == Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeFill.png"))
+            PictureBox pictureBox2 = (PictureBox)sender;
+            if ((pictureBox2.Image == Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeFill.png")))
             {
                 pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png");
+                MessageBox.Show("kek123");
+            }
+            else 
+            {
+                pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeFill.png");
+                MessageBox.Show("kek456");
             }
         }
         public static void SetRoundedShape(Control control, int radius)

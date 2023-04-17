@@ -202,5 +202,6 @@
         private System.Windows.Forms.Label ReccomendationLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button PlusCar;
+        //private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

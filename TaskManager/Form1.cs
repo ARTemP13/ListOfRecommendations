@@ -139,7 +139,7 @@ namespace TaskManager
                 if(dt.Rows.Count == 1)
                 {
                     this.Hide();
-                    MainApplicationList mainApplicationList = new MainApplicationList();
+                    MainApplicationList mainApplicationList = new MainApplicationList(CheckEmail);
                     mainApplicationList.Show();
                 } else
                 {
@@ -236,7 +236,7 @@ namespace TaskManager
             for (int i = 0; i < str.Length; i++)
             {
                 int c = str[i];
-                c = (c + key) % 128;
+                c = (c + key) % 120;
                 chars[i] = (char)c;
             }
             string str1 = new string(chars);
