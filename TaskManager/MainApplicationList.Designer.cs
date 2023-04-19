@@ -140,6 +140,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.AutoScrollMargin = new System.Drawing.Size(200, 200);
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.flowLayoutPanel1.BackgroundImage = global::TaskManager.Properties.Resources.BackGround2;
             this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -149,7 +150,6 @@
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 15, 15, 15);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(987, 614);
             this.flowLayoutPanel1.TabIndex = 13;
-            this.flowLayoutPanel1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.flowLayoutPanel1_Scroll);
             // 
             // PlusCar
             // 

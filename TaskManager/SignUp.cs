@@ -244,6 +244,15 @@ namespace TaskManager
                         string querystring20 = $"UPDATE [{createName}{createSurname}Table] SET MxPower = 5000 WHERE MxPower IS NULL;";
                         SqlCommand sqlCommand20 = new SqlCommand(querystring20, dataBase.getConnection());
                         sqlCommand20.ExecuteNonQuery();
+
+                        string querystring21 = $"ALTER TABLE [{createName}{createSurname}Table] ADD CountrySelect INT DEFAULT 1;";
+                        SqlCommand sqlCommand21 = new SqlCommand(querystring21, dataBase.getConnection());
+                        sqlCommand21.ExecuteNonQuery();
+                        string querystring22 = $"UPDATE [{createName}{createSurname}Table] SET CountrySelect = 1 WHERE CountrySelect IS NULL;";
+                        SqlCommand sqlCommand22 = new SqlCommand(querystring22, dataBase.getConnection());
+                        sqlCommand22.ExecuteNonQuery();
+
+
                         MessageBox.Show("Аккаунт успешно создан!");
                         this.Hide();
                         Form1 form = new Form1();

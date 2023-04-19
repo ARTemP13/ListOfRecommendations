@@ -17,7 +17,7 @@ namespace TaskManager
             if (Environment.OSVersion.Version.Major >= 6) SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainApplicationList("hut@gmail.com"));
+            Application.Run(new MainApplicationList("fake@gmail.com"));
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

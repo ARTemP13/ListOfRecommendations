@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static TaskManager.MainApplicationList;
 
 namespace TaskManager
@@ -16,6 +17,19 @@ namespace TaskManager
 
     {
         DataBase dataBase = new DataBase();
+        int FavoriteNow = 0;
+        class MyFlowLayoutPanel : FlowLayoutPanel
+        {
+            public MyFlowLayoutPanel()
+            {
+                this.DoubleBuffered = true;
+            }
+            protected override void OnScroll(ScrollEventArgs se)
+            {
+                this.Invalidate();
+                base.OnScroll(se);
+            }
+        }
         public class CustomFlowLayoutPanel : FlowLayoutPanel
         {
             public CustomFlowLayoutPanel()
@@ -55,16 +69,19 @@ namespace TaskManager
             CreateCards();
             
         }
+        string name = "", surname = "";
+        string cars = "", models = "";
+        int idcar = 0;
         public void CreateCards()
         {
-            CustomFlowLayoutPanel panel1 = new CustomFlowLayoutPanel();
+            MyFlowLayoutPanel panel1 = new MyFlowLayoutPanel();
             panel1.FlowDirection = FlowDirection.LeftToRight;
             panel1.AutoSize = true;
             dataBase.openConnection();
             string queryTable = $"SELECT names, surnames FROM accounts_db WHERE emails = '{ThisEmail}';";
             SqlCommand command = new SqlCommand(queryTable, dataBase.getConnection());
             SqlDataReader reader = command.ExecuteReader();
-            string name = "", surname = "";
+            
             if (reader.Read())
             {
                 name = reader.GetString(0);
@@ -72,11 +89,12 @@ namespace TaskManager
             }
             reader.Close();
 
-            string query1 = $"SELECT COUNT(*) FROM {name}{surname}Table WHERE priceRUB >= MinPrice AND priceRUB <= MaxPrice AND maxspeed >= MinSpeed AND maxspeed <= MxSpeed AND horsepower >= mPower AND horsepower <= MxPower AND CarsSelect = 1";
+            string query1 = $"SELECT COUNT(*) FROM {name}{surname}Table WHERE priceRUB >= MinPrice AND priceRUB <= MaxPrice AND maxspeed >= MinSpeed AND maxspeed <= MxSpeed AND horsepower >= mPower AND horsepower <= MxPower AND CarsSelect = 1 AND CountrySelect = 1";
             SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
             int rowCount = 0;
             rowCount = (int)command1.ExecuteScalar();
             //MessageBox.Show(rowCount + "------");
+            List<int> id = new List<int>();
             List<string> car = new List<string>();
             List<string> model = new List<string>();
             List<int> price = new List<int>();
@@ -85,24 +103,29 @@ namespace TaskManager
             List<string> country = new List<string>();
             List<int> score = new List<int>();
             List<int> favorite = new List<int>();
-            string query2 = $"SELECT brand, model, priceRUB, maxspeed, horsepower, country, Score, Favorites FROM {name}{surname}Table WHERE priceRUB >= MinPrice AND priceRUB <= MaxPrice AND maxspeed >= MinSpeed AND maxspeed <= MxSpeed AND horsepower >= mPower AND horsepower <= MxPower AND CarsSelect = 1";
+            string query2 = $"SELECT id, brand, model, priceRUB, maxspeed, horsepower, country, Score, Favorites FROM {name}{surname}Table WHERE priceRUB >= MinPrice AND priceRUB <= MaxPrice AND maxspeed >= MinSpeed AND maxspeed <= MxSpeed AND horsepower >= mPower AND horsepower <= MxPower AND CarsSelect = 1";
             SqlCommand command2 = new SqlCommand(query2, dataBase.getConnection());
             using (SqlDataReader reader3 = command2.ExecuteReader())
             {
                 while (reader3.Read())
                 {
-                    car.Add(reader3.GetString(0));
-                    model.Add(reader3.GetString(1));
-                    price.Add(reader3.GetInt32(2));
-                    speed.Add(reader3.GetInt32(3));
-                    power.Add(reader3.GetInt32(4));
-                    country.Add(reader3.GetString(5));
-                    score.Add(reader3.GetInt32(6));
-                    favorite.Add(reader3.GetInt32(7));
+                    id.Add(reader3.GetInt32(0));
+                    car.Add(reader3.GetString(1));
+                    model.Add(reader3.GetString(2));
+                    price.Add(reader3.GetInt32(3));
+                    speed.Add(reader3.GetInt32(4));
+                    power.Add(reader3.GetInt32(5));
+                    country.Add(reader3.GetString(6));
+                    score.Add(reader3.GetInt32(7));
+                    favorite.Add(reader3.GetInt32(8));
                 }
             }
+            if (rowCount >= 100) rowCount = 100;
             for (int i = 0; i < rowCount; i++)
             {
+                cars = car[i];
+                models = model[i];
+                idcar = id[i];
                 Panel panel3 = new Panel();
 
                 PictureBox pictureBox = new PictureBox();
@@ -184,15 +207,24 @@ namespace TaskManager
                 panel3.Controls.Add(pictureBox1);
 
                 PictureBox pictureBox2 = new PictureBox();
-                pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png");
+                if (favorite[i] == 1)
+                {
+                    pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeFill.png");
+                    FavoriteNow = 1;
+                } else
+                {
+                    pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png");
+                    FavoriteNow = 0;
+                }
                 pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBox2.Enabled = true;
                 pictureBox2.Cursor = Cursors.Hand;
                 pictureBox2.Width = 40;
                 pictureBox2.Height = 30;
                 pictureBox2.Location = new Point(843, 250);
+                pictureBox2.Tag = idcar;
                 panel3.Controls.Add(pictureBox2);
-                pictureBox2.Click += new EventHandler(pictureBox2_Click);
+                
 
                 foreach (Control control in panel1.Controls)
                 {
@@ -200,22 +232,38 @@ namespace TaskManager
                 }
 
                 flowLayoutPanel1.Controls.Add(panel1);
+                pictureBox2.Click += new EventHandler(pictureBox2_Click);
             }
             dataBase.closedConnection();
         }
         public void pictureBox2_Click(object sender, EventArgs e)
         {
+            dataBase.openConnection();
             PictureBox pictureBox2 = (PictureBox)sender;
-            if ((pictureBox2.Image == Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeFill.png")))
-            {
-                pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png");
-                MessageBox.Show("kek123");
-            }
-            else 
+            idcar = (int)pictureBox2.Tag;
+            if (FavoriteNow == 0)
             {
                 pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeFill.png");
-                MessageBox.Show("kek456");
+                FavoriteNow = 1;
+                
+                string query1 = $"UPDATE [{name}{surname}Table] SET Favorites = 1 WHERE id = @id";
+                SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
+                command1.Parameters.AddWithValue("@id", idcar);
+
+                command1.ExecuteNonQuery();
+                
             }
+            else
+            {
+                pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png");
+                FavoriteNow = 0;
+                string query1 = $"UPDATE {name}{surname}Table SET Favorites = 0 WHERE id = @id";
+                SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
+                command1.Parameters.AddWithValue("@id", idcar);
+                command1.ExecuteNonQuery();
+                
+            }
+            dataBase.closedConnection();
         }
         public static void SetRoundedShape(Control control, int radius)
         {
@@ -229,11 +277,6 @@ namespace TaskManager
             path.AddLine(0, control.Height - radius, 0, radius);
             path.AddArc(0, 0, radius, radius, 180, 90);
             control.Region = new Region(path);
-        }
-
-        private void flowLayoutPanel1_Scroll(object sender, ScrollEventArgs e)
-        {
-            Application.DoEvents();
         }
     }
 }
