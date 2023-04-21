@@ -5,97 +5,41 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 using static TaskManager.MainApplicationList;
+using System.Xml.Linq;
 
 namespace TaskManager
 {
-    public partial class MainApplicationList : Form
-
+    public partial class Favorite : Form
     {
         DataBase dataBase = new DataBase();
-        int FavoriteNow = 0;
-        public class CustomEventArgs : EventArgs 
-        { 
-            public int FavoriteNow { get; set; }
-        }
-        class MyFlowLayoutPanel : FlowLayoutPanel
-        {
-            public MyFlowLayoutPanel()
-            {
-                this.DoubleBuffered = true;
-            }
-            protected override void OnScroll(ScrollEventArgs se)
-            {
-                this.Invalidate();
-                base.OnScroll(se);
-            }
-        }
-        public class CustomFlowLayoutPanel : FlowLayoutPanel
-        {
-            public CustomFlowLayoutPanel()
-                : base()
-            {
-                this.SetStyle(ControlStyles.UserPaint, true);
-                this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-                this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            }
-
-            protected override void OnScroll(ScrollEventArgs se)
-            {
-                this.Invalidate();
-
-                base.OnScroll(se);
-            }
-            protected override CreateParams CreateParams
-            {
-                get
-                {
-                    CreateParams cp = base.CreateParams;
-                    cp.ExStyle |= 0x02000000;
-                    return cp;
-                }
-            }
-        }
-        string ThisEmail;
-        public MainApplicationList(string email)
+        string NameTable, SurnameTable, ThisEmail;
+        public Favorite(string name, string surname, string email)
         {
             InitializeComponent();
-            DoubleBuffered = true;
-            SetRoundedShape(FavoritesButton, 40);
-            SetRoundedShape(selectionsButton, 40);
-            SetRoundedShape(FeaturesButton, 40);
-            SetRoundedShape(PlusCar, 40);
+            NameTable = name;
+            SurnameTable = surname;
             ThisEmail = email;
-            CreateCards();
-            
+            SetRoundedShape(BackButton, 40);
+            CreateCardFavorite();
+
         }
-        string name = "", surname = "";
         string cars = "", models = "";
         int idcar = 0;
-        public void CreateCards()
+        int FavoriteNow = 0;
+        int count = 0;
+        int[] WasCard = new int[130];
+        public void CreateCardFavorite()
         {
             MyFlowLayoutPanel panel1 = new MyFlowLayoutPanel();
             panel1.FlowDirection = FlowDirection.LeftToRight;
             panel1.AutoSize = true;
             dataBase.openConnection();
-            string queryTable = $"SELECT names, surnames FROM accounts_db WHERE emails = '{ThisEmail}';";
-            SqlCommand command = new SqlCommand(queryTable, dataBase.getConnection());
-            SqlDataReader reader = command.ExecuteReader();
-            
-            if (reader.Read())
-            {
-                name = reader.GetString(0);
-                surname = reader.GetString(1);
-            }
-            reader.Close();
-
-            string query1 = $"SELECT COUNT(*) FROM {name}{surname}Table WHERE priceRUB >= MinPrice AND priceRUB <= MaxPrice AND maxspeed >= MinSpeed AND maxspeed <= MxSpeed AND horsepower >= mPower AND horsepower <= MxPower AND CarsSelect = 1 AND CountrySelect = 1";
+            string query1 = $"SELECT COUNT(*) FROM {NameTable}{SurnameTable}Table WHERE Favorites = 1";
             SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
             int rowCount = 0;
             rowCount = (int)command1.ExecuteScalar();
@@ -108,7 +52,7 @@ namespace TaskManager
             List<string> country = new List<string>();
             List<int> score = new List<int>();
             List<int> favorite = new List<int>();
-            string query2 = $"SELECT id, brand, model, priceRUB, maxspeed, horsepower, country, Score, Favorites FROM {name}{surname}Table WHERE priceRUB >= MinPrice AND priceRUB <= MaxPrice AND maxspeed >= MinSpeed AND maxspeed <= MxSpeed AND horsepower >= mPower AND horsepower <= MxPower AND CarsSelect = 1";
+            string query2 = $"SELECT id, brand, model, priceRUB, maxspeed, horsepower, country, Score, Favorites FROM {NameTable}{SurnameTable}Table WHERE Favorites = 1";
             SqlCommand command2 = new SqlCommand(query2, dataBase.getConnection());
             using (SqlDataReader reader3 = command2.ExecuteReader())
             {
@@ -137,7 +81,9 @@ namespace TaskManager
                 try
                 {
                     pictureBox.Image = Image.FromFile($"C:/Users/Артем/source/repos/TaskManager/TaskManager/Cars/{car[i]}{model[i]}.jpg");
-                } catch { 
+                }
+                catch
+                {
                 }
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox.Width = 400;
@@ -146,6 +92,7 @@ namespace TaskManager
 
                 panel3.BackColor = Color.White;
                 panel3.Size = new Size(950, 300);
+                panel3.Invalidate();
                 panel1.Controls.Add(panel3);
 
                 Label label = new Label();
@@ -216,7 +163,8 @@ namespace TaskManager
                 {
                     pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeFill.png");
                     FavoriteNow = 1;
-                } else
+                }
+                else
                 {
                     pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png");
                     FavoriteNow = 0;
@@ -229,22 +177,34 @@ namespace TaskManager
                 pictureBox2.Location = new Point(843, 250);
                 pictureBox2.Tag = idcar;
                 panel3.Controls.Add(pictureBox2);
-                
+
 
                 foreach (Control control in panel1.Controls)
                 {
                     control.Margin = new Padding(-1, 10, 10, 10);
                 }
 
-                flowLayoutPanel1.Controls.Add(panel1);
+                flowLayoutPanelFavorite.Controls.Add(panel1);
                 CustomEventArgs customEventArgs = new CustomEventArgs();
                 customEventArgs.FavoriteNow = favorite[i];
                 pictureBox2.Click += (sender, e) => pictureBox2_Click(sender, customEventArgs);
             }
             dataBase.closedConnection();
+
         }
-        int count = 0;
-        int[] WasCard = new int[130];
+
+        private void Favorite_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainApplicationList mainApplicationList = new MainApplicationList(ThisEmail);
+            mainApplicationList.Show();
+        }
+
         public void pictureBox2_Click(object sender, CustomEventArgs e)
         {
             PictureBox pictureBox2 = (PictureBox)sender;
@@ -267,7 +227,7 @@ namespace TaskManager
                 pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeFill.png");
                 FavoriteNow = 1;
 
-                string query1 = $"UPDATE [{name}{surname}Table] SET Favorites = 1 WHERE id = @id";
+                string query1 = $"UPDATE [{NameTable}{SurnameTable}Table] SET Favorites = 1 WHERE id = @id";
                 SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
                 command1.Parameters.AddWithValue("@id", idcar);
 
@@ -278,7 +238,7 @@ namespace TaskManager
             {
                 pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png");
                 FavoriteNow = 0;
-                string query1 = $"UPDATE {name}{surname}Table SET Favorites = 0 WHERE id = @id";
+                string query1 = $"UPDATE {NameTable}{SurnameTable}Table SET Favorites = 0 WHERE id = @id";
                 SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
                 command1.Parameters.AddWithValue("@id", idcar);
                 command1.ExecuteNonQuery();
