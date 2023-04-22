@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(brandview));
-            this.checkBoxAudi = new System.Windows.Forms.CheckBox();
-            this.checkBoxKIA = new System.Windows.Forms.CheckBox();
+            this.Audi = new System.Windows.Forms.CheckBox();
+            this.KIA = new System.Windows.Forms.CheckBox();
             this.VerticalLine = new System.Windows.Forms.Panel();
-            this.checkBoxNissan = new System.Windows.Forms.CheckBox();
-            this.checkBoxLADA = new System.Windows.Forms.CheckBox();
-            this.checkBoxLexus = new System.Windows.Forms.CheckBox();
-            this.checkBoxHyundai = new System.Windows.Forms.CheckBox();
-            this.checkBoxSuzuki = new System.Windows.Forms.CheckBox();
-            this.checkBoxBMW = new System.Windows.Forms.CheckBox();
-            this.checkBoxVolkswagen = new System.Windows.Forms.CheckBox();
-            this.checkBoxToyota = new System.Windows.Forms.CheckBox();
-            this.checkBoxSkoda = new System.Windows.Forms.CheckBox();
-            this.checkBoxMitsubishi = new System.Windows.Forms.CheckBox();
-            this.checkBoxFord = new System.Windows.Forms.CheckBox();
+            this.Nissan = new System.Windows.Forms.CheckBox();
+            this.LADA = new System.Windows.Forms.CheckBox();
+            this.Lexus = new System.Windows.Forms.CheckBox();
+            this.Hyundai = new System.Windows.Forms.CheckBox();
+            this.Suzuki = new System.Windows.Forms.CheckBox();
+            this.BMW = new System.Windows.Forms.CheckBox();
+            this.Volkswagen = new System.Windows.Forms.CheckBox();
+            this.Toyota = new System.Windows.Forms.CheckBox();
+            this.Skoda = new System.Windows.Forms.CheckBox();
+            this.Mitsubishi = new System.Windows.Forms.CheckBox();
+            this.Ford = new System.Windows.Forms.CheckBox();
             this.Марка = new System.Windows.Forms.Label();
             this.prieceFrom = new System.Windows.Forms.TextBox();
             this.Цена = new System.Windows.Forms.Label();
@@ -64,30 +64,30 @@
             this.SaveRec = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // checkBoxAudi
+            // Audi
             // 
-            this.checkBoxAudi.AutoSize = true;
-            this.checkBoxAudi.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxAudi.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxAudi.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.checkBoxAudi.Location = new System.Drawing.Point(27, 84);
-            this.checkBoxAudi.Name = "checkBoxAudi";
-            this.checkBoxAudi.Size = new System.Drawing.Size(105, 45);
-            this.checkBoxAudi.TabIndex = 2;
-            this.checkBoxAudi.Text = "Audi";
-            this.checkBoxAudi.UseVisualStyleBackColor = false;
+            this.Audi.AutoSize = true;
+            this.Audi.BackColor = System.Drawing.Color.Transparent;
+            this.Audi.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Audi.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Audi.Location = new System.Drawing.Point(27, 84);
+            this.Audi.Name = "Audi";
+            this.Audi.Size = new System.Drawing.Size(105, 45);
+            this.Audi.TabIndex = 2;
+            this.Audi.Text = "Audi";
+            this.Audi.UseVisualStyleBackColor = false;
             // 
-            // checkBoxKIA
+            // KIA
             // 
-            this.checkBoxKIA.AutoSize = true;
-            this.checkBoxKIA.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxKIA.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxKIA.Location = new System.Drawing.Point(27, 135);
-            this.checkBoxKIA.Name = "checkBoxKIA";
-            this.checkBoxKIA.Size = new System.Drawing.Size(87, 45);
-            this.checkBoxKIA.TabIndex = 3;
-            this.checkBoxKIA.Text = "KIA";
-            this.checkBoxKIA.UseVisualStyleBackColor = false;
+            this.KIA.AutoSize = true;
+            this.KIA.BackColor = System.Drawing.Color.Transparent;
+            this.KIA.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KIA.Location = new System.Drawing.Point(27, 135);
+            this.KIA.Name = "KIA";
+            this.KIA.Size = new System.Drawing.Size(87, 45);
+            this.KIA.TabIndex = 3;
+            this.KIA.Text = "KIA";
+            this.KIA.UseVisualStyleBackColor = false;
             // 
             // VerticalLine
             // 
@@ -99,138 +99,137 @@
             this.VerticalLine.Size = new System.Drawing.Size(5, 761);
             this.VerticalLine.TabIndex = 4;
             // 
-            // checkBoxNissan
+            // Nissan
             // 
-            this.checkBoxNissan.AutoSize = true;
-            this.checkBoxNissan.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxNissan.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxNissan.Location = new System.Drawing.Point(27, 186);
-            this.checkBoxNissan.Name = "checkBoxNissan";
-            this.checkBoxNissan.Size = new System.Drawing.Size(133, 45);
-            this.checkBoxNissan.TabIndex = 5;
-            this.checkBoxNissan.Text = "Nissan";
-            this.checkBoxNissan.UseVisualStyleBackColor = false;
+            this.Nissan.AutoSize = true;
+            this.Nissan.BackColor = System.Drawing.Color.Transparent;
+            this.Nissan.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Nissan.Location = new System.Drawing.Point(27, 186);
+            this.Nissan.Name = "Nissan";
+            this.Nissan.Size = new System.Drawing.Size(133, 45);
+            this.Nissan.TabIndex = 5;
+            this.Nissan.Text = "Nissan";
+            this.Nissan.UseVisualStyleBackColor = false;
             // 
-            // checkBoxLADA
+            // LADA
             // 
-            this.checkBoxLADA.AutoSize = true;
-            this.checkBoxLADA.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxLADA.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxLADA.Location = new System.Drawing.Point(27, 237);
-            this.checkBoxLADA.Name = "checkBoxLADA";
-            this.checkBoxLADA.Size = new System.Drawing.Size(117, 45);
-            this.checkBoxLADA.TabIndex = 6;
-            this.checkBoxLADA.Text = "LADA";
-            this.checkBoxLADA.UseVisualStyleBackColor = false;
+            this.LADA.AutoSize = true;
+            this.LADA.BackColor = System.Drawing.Color.Transparent;
+            this.LADA.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LADA.Location = new System.Drawing.Point(27, 237);
+            this.LADA.Name = "LADA";
+            this.LADA.Size = new System.Drawing.Size(117, 45);
+            this.LADA.TabIndex = 6;
+            this.LADA.Text = "LADA";
+            this.LADA.UseVisualStyleBackColor = false;
             // 
-            // checkBoxLexus
+            // Lexus
             // 
-            this.checkBoxLexus.AutoSize = true;
-            this.checkBoxLexus.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxLexus.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxLexus.Location = new System.Drawing.Point(27, 288);
-            this.checkBoxLexus.Name = "checkBoxLexus";
-            this.checkBoxLexus.Size = new System.Drawing.Size(119, 45);
-            this.checkBoxLexus.TabIndex = 7;
-            this.checkBoxLexus.Text = "Lexus";
-            this.checkBoxLexus.UseVisualStyleBackColor = false;
+            this.Lexus.AutoSize = true;
+            this.Lexus.BackColor = System.Drawing.Color.Transparent;
+            this.Lexus.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lexus.Location = new System.Drawing.Point(27, 288);
+            this.Lexus.Name = "Lexus";
+            this.Lexus.Size = new System.Drawing.Size(119, 45);
+            this.Lexus.TabIndex = 7;
+            this.Lexus.Text = "Lexus";
+            this.Lexus.UseVisualStyleBackColor = false;
             // 
-            // checkBoxHyundai
+            // Hyundai
             // 
-            this.checkBoxHyundai.AutoSize = true;
-            this.checkBoxHyundai.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxHyundai.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxHyundai.Location = new System.Drawing.Point(27, 339);
-            this.checkBoxHyundai.Name = "checkBoxHyundai";
-            this.checkBoxHyundai.Size = new System.Drawing.Size(157, 45);
-            this.checkBoxHyundai.TabIndex = 8;
-            this.checkBoxHyundai.Text = "Hyundai";
-            this.checkBoxHyundai.UseVisualStyleBackColor = false;
+            this.Hyundai.AutoSize = true;
+            this.Hyundai.BackColor = System.Drawing.Color.Transparent;
+            this.Hyundai.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Hyundai.Location = new System.Drawing.Point(27, 339);
+            this.Hyundai.Name = "Hyundai";
+            this.Hyundai.Size = new System.Drawing.Size(157, 45);
+            this.Hyundai.TabIndex = 8;
+            this.Hyundai.Text = "Hyundai";
+            this.Hyundai.UseVisualStyleBackColor = false;
             // 
-            // checkBoxSuzuki
+            // Suzuki
             // 
-            this.checkBoxSuzuki.AutoSize = true;
-            this.checkBoxSuzuki.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxSuzuki.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxSuzuki.Location = new System.Drawing.Point(27, 390);
-            this.checkBoxSuzuki.Name = "checkBoxSuzuki";
-            this.checkBoxSuzuki.Size = new System.Drawing.Size(132, 45);
-            this.checkBoxSuzuki.TabIndex = 9;
-            this.checkBoxSuzuki.Text = "Suzuki";
-            this.checkBoxSuzuki.UseVisualStyleBackColor = false;
+            this.Suzuki.AutoSize = true;
+            this.Suzuki.BackColor = System.Drawing.Color.Transparent;
+            this.Suzuki.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Suzuki.Location = new System.Drawing.Point(27, 390);
+            this.Suzuki.Name = "Suzuki";
+            this.Suzuki.Size = new System.Drawing.Size(132, 45);
+            this.Suzuki.TabIndex = 9;
+            this.Suzuki.Text = "Suzuki";
+            this.Suzuki.UseVisualStyleBackColor = false;
             // 
-            // checkBoxBMW
+            // BMW
             // 
-            this.checkBoxBMW.AutoSize = true;
-            this.checkBoxBMW.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxBMW.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxBMW.Location = new System.Drawing.Point(27, 441);
-            this.checkBoxBMW.Name = "checkBoxBMW";
-            this.checkBoxBMW.Size = new System.Drawing.Size(115, 45);
-            this.checkBoxBMW.TabIndex = 10;
-            this.checkBoxBMW.Text = "BMW";
-            this.checkBoxBMW.UseVisualStyleBackColor = false;
+            this.BMW.AutoSize = true;
+            this.BMW.BackColor = System.Drawing.Color.Transparent;
+            this.BMW.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BMW.Location = new System.Drawing.Point(27, 441);
+            this.BMW.Name = "BMW";
+            this.BMW.Size = new System.Drawing.Size(115, 45);
+            this.BMW.TabIndex = 10;
+            this.BMW.Text = "BMW";
+            this.BMW.UseVisualStyleBackColor = false;
             // 
-            // checkBoxVolkswagen
+            // Volkswagen
             // 
-            this.checkBoxVolkswagen.AutoSize = true;
-            this.checkBoxVolkswagen.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxVolkswagen.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxVolkswagen.Location = new System.Drawing.Point(27, 492);
-            this.checkBoxVolkswagen.Name = "checkBoxVolkswagen";
-            this.checkBoxVolkswagen.Size = new System.Drawing.Size(210, 45);
-            this.checkBoxVolkswagen.TabIndex = 11;
-            this.checkBoxVolkswagen.Text = "Volkswagen";
-            this.checkBoxVolkswagen.UseVisualStyleBackColor = false;
+            this.Volkswagen.AutoSize = true;
+            this.Volkswagen.BackColor = System.Drawing.Color.Transparent;
+            this.Volkswagen.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Volkswagen.Location = new System.Drawing.Point(27, 492);
+            this.Volkswagen.Name = "Volkswagen";
+            this.Volkswagen.Size = new System.Drawing.Size(210, 45);
+            this.Volkswagen.TabIndex = 11;
+            this.Volkswagen.Text = "Volkswagen";
+            this.Volkswagen.UseVisualStyleBackColor = false;
             // 
-            // checkBoxToyota
+            // Toyota
             // 
-            this.checkBoxToyota.AutoSize = true;
-            this.checkBoxToyota.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxToyota.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxToyota.Location = new System.Drawing.Point(27, 543);
-            this.checkBoxToyota.Name = "checkBoxToyota";
-            this.checkBoxToyota.Size = new System.Drawing.Size(138, 45);
-            this.checkBoxToyota.TabIndex = 12;
-            this.checkBoxToyota.Text = "Toyota";
-            this.checkBoxToyota.UseVisualStyleBackColor = false;
+            this.Toyota.AutoSize = true;
+            this.Toyota.BackColor = System.Drawing.Color.Transparent;
+            this.Toyota.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Toyota.Location = new System.Drawing.Point(27, 543);
+            this.Toyota.Name = "Toyota";
+            this.Toyota.Size = new System.Drawing.Size(138, 45);
+            this.Toyota.TabIndex = 12;
+            this.Toyota.Text = "Toyota";
+            this.Toyota.UseVisualStyleBackColor = false;
             // 
-            // checkBoxSkoda
+            // Skoda
             // 
-            this.checkBoxSkoda.AutoSize = true;
-            this.checkBoxSkoda.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxSkoda.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxSkoda.Location = new System.Drawing.Point(27, 594);
-            this.checkBoxSkoda.Name = "checkBoxSkoda";
-            this.checkBoxSkoda.Size = new System.Drawing.Size(127, 45);
-            this.checkBoxSkoda.TabIndex = 13;
-            this.checkBoxSkoda.Text = "Skoda";
-            this.checkBoxSkoda.UseVisualStyleBackColor = false;
+            this.Skoda.AutoSize = true;
+            this.Skoda.BackColor = System.Drawing.Color.Transparent;
+            this.Skoda.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Skoda.Location = new System.Drawing.Point(27, 594);
+            this.Skoda.Name = "Skoda";
+            this.Skoda.Size = new System.Drawing.Size(127, 45);
+            this.Skoda.TabIndex = 13;
+            this.Skoda.Text = "Skoda";
+            this.Skoda.UseVisualStyleBackColor = false;
             // 
-            // checkBoxMitsubishi
+            // Mitsubishi
             // 
-            this.checkBoxMitsubishi.AutoSize = true;
-            this.checkBoxMitsubishi.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxMitsubishi.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxMitsubishi.Location = new System.Drawing.Point(27, 645);
-            this.checkBoxMitsubishi.Name = "checkBoxMitsubishi";
-            this.checkBoxMitsubishi.Size = new System.Drawing.Size(186, 45);
-            this.checkBoxMitsubishi.TabIndex = 14;
-            this.checkBoxMitsubishi.Text = "Mitsubishi";
-            this.checkBoxMitsubishi.UseVisualStyleBackColor = false;
+            this.Mitsubishi.AutoSize = true;
+            this.Mitsubishi.BackColor = System.Drawing.Color.Transparent;
+            this.Mitsubishi.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Mitsubishi.Location = new System.Drawing.Point(27, 645);
+            this.Mitsubishi.Name = "Mitsubishi";
+            this.Mitsubishi.Size = new System.Drawing.Size(186, 45);
+            this.Mitsubishi.TabIndex = 14;
+            this.Mitsubishi.Text = "Mitsubishi";
+            this.Mitsubishi.UseVisualStyleBackColor = false;
             // 
-            // checkBoxFord
+            // Ford
             // 
-            this.checkBoxFord.AutoSize = true;
-            this.checkBoxFord.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxFord.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxFord.Location = new System.Drawing.Point(27, 696);
-            this.checkBoxFord.Name = "checkBoxFord";
-            this.checkBoxFord.Size = new System.Drawing.Size(105, 45);
-            this.checkBoxFord.TabIndex = 15;
-            this.checkBoxFord.Text = "Ford";
-            this.checkBoxFord.UseVisualStyleBackColor = false;
-            this.checkBoxFord.CheckedChanged += new System.EventHandler(this.checkBox13_CheckedChanged);
+            this.Ford.AutoSize = true;
+            this.Ford.BackColor = System.Drawing.Color.Transparent;
+            this.Ford.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ford.Location = new System.Drawing.Point(27, 696);
+            this.Ford.Name = "Ford";
+            this.Ford.Size = new System.Drawing.Size(105, 45);
+            this.Ford.TabIndex = 15;
+            this.Ford.Text = "Ford";
+            this.Ford.UseVisualStyleBackColor = false;
             // 
             // Марка
             // 
@@ -254,8 +253,6 @@
             this.prieceFrom.Name = "prieceFrom";
             this.prieceFrom.Size = new System.Drawing.Size(198, 50);
             this.prieceFrom.TabIndex = 17;
-            this.prieceFrom.Enter += new System.EventHandler(this.prieceFrom_Enter);
-            this.prieceFrom.Leave += new System.EventHandler(this.prieceFrom_Leave);
             // 
             // Цена
             // 
@@ -290,8 +287,6 @@
             this.speedTo.Name = "speedTo";
             this.speedTo.Size = new System.Drawing.Size(160, 50);
             this.speedTo.TabIndex = 21;
-            this.speedTo.Enter += new System.EventHandler(this.speedTo_Enter);
-            this.speedTo.Leave += new System.EventHandler(this.speedTo_Leave);
             // 
             // speedFrom
             // 
@@ -303,8 +298,6 @@
             this.speedFrom.Name = "speedFrom";
             this.speedFrom.Size = new System.Drawing.Size(160, 50);
             this.speedFrom.TabIndex = 20;
-            this.speedFrom.Enter += new System.EventHandler(this.speedFrom_Enter);
-            this.speedFrom.Leave += new System.EventHandler(this.speedFrom_Leave);
             // 
             // Horsepower
             // 
@@ -327,8 +320,6 @@
             this.PowerTo.Name = "PowerTo";
             this.PowerTo.Size = new System.Drawing.Size(160, 50);
             this.PowerTo.TabIndex = 24;
-            this.PowerTo.Enter += new System.EventHandler(this.PowerTo_Enter);
-            this.PowerTo.Leave += new System.EventHandler(this.PowerTo_Leave);
             // 
             // PowerFrom
             // 
@@ -340,8 +331,6 @@
             this.PowerFrom.Name = "PowerFrom";
             this.PowerFrom.Size = new System.Drawing.Size(160, 50);
             this.PowerFrom.TabIndex = 23;
-            this.PowerFrom.Enter += new System.EventHandler(this.PowerFrom_Enter);
-            this.PowerFrom.Leave += new System.EventHandler(this.PowerFrom_Leave);
             // 
             // country
             // 
@@ -444,8 +433,6 @@
             this.priceTo.Name = "priceTo";
             this.priceTo.Size = new System.Drawing.Size(198, 50);
             this.priceTo.TabIndex = 34;
-            this.priceTo.Enter += new System.EventHandler(this.priceTo_Enter);
-            this.priceTo.Leave += new System.EventHandler(this.priceTo_Leave);
             // 
             // SaveRec
             // 
@@ -460,6 +447,7 @@
             this.SaveRec.TabIndex = 35;
             this.SaveRec.Text = "Сохранить";
             this.SaveRec.UseVisualStyleBackColor = false;
+            this.SaveRec.Click += new System.EventHandler(this.SaveRec_Click);
             // 
             // brandview
             // 
@@ -487,44 +475,43 @@
             this.Controls.Add(this.Цена);
             this.Controls.Add(this.prieceFrom);
             this.Controls.Add(this.Марка);
-            this.Controls.Add(this.checkBoxFord);
-            this.Controls.Add(this.checkBoxMitsubishi);
-            this.Controls.Add(this.checkBoxSkoda);
-            this.Controls.Add(this.checkBoxToyota);
-            this.Controls.Add(this.checkBoxVolkswagen);
-            this.Controls.Add(this.checkBoxBMW);
-            this.Controls.Add(this.checkBoxSuzuki);
-            this.Controls.Add(this.checkBoxHyundai);
-            this.Controls.Add(this.checkBoxLexus);
-            this.Controls.Add(this.checkBoxLADA);
-            this.Controls.Add(this.checkBoxNissan);
+            this.Controls.Add(this.Ford);
+            this.Controls.Add(this.Mitsubishi);
+            this.Controls.Add(this.Skoda);
+            this.Controls.Add(this.Toyota);
+            this.Controls.Add(this.Volkswagen);
+            this.Controls.Add(this.BMW);
+            this.Controls.Add(this.Suzuki);
+            this.Controls.Add(this.Hyundai);
+            this.Controls.Add(this.Lexus);
+            this.Controls.Add(this.LADA);
+            this.Controls.Add(this.Nissan);
             this.Controls.Add(this.VerticalLine);
-            this.Controls.Add(this.checkBoxKIA);
-            this.Controls.Add(this.checkBoxAudi);
+            this.Controls.Add(this.KIA);
+            this.Controls.Add(this.Audi);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "brandview";
             this.Text = "Выбор рекомендаций";
-            this.Load += new System.EventHandler(this.brandview_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.CheckBox checkBoxAudi;
-        private System.Windows.Forms.CheckBox checkBoxKIA;
+        private System.Windows.Forms.CheckBox Audi;
+        private System.Windows.Forms.CheckBox KIA;
         private System.Windows.Forms.Panel VerticalLine;
-        private System.Windows.Forms.CheckBox checkBoxNissan;
-        private System.Windows.Forms.CheckBox checkBoxLADA;
-        private System.Windows.Forms.CheckBox checkBoxLexus;
-        private System.Windows.Forms.CheckBox checkBoxHyundai;
-        private System.Windows.Forms.CheckBox checkBoxSuzuki;
-        private System.Windows.Forms.CheckBox checkBoxBMW;
-        private System.Windows.Forms.CheckBox checkBoxVolkswagen;
-        private System.Windows.Forms.CheckBox checkBoxToyota;
-        private System.Windows.Forms.CheckBox checkBoxSkoda;
-        private System.Windows.Forms.CheckBox checkBoxMitsubishi;
-        private System.Windows.Forms.CheckBox checkBoxFord;
+        private System.Windows.Forms.CheckBox Nissan;
+        private System.Windows.Forms.CheckBox LADA;
+        private System.Windows.Forms.CheckBox Lexus;
+        private System.Windows.Forms.CheckBox Hyundai;
+        private System.Windows.Forms.CheckBox Suzuki;
+        private System.Windows.Forms.CheckBox BMW;
+        private System.Windows.Forms.CheckBox Volkswagen;
+        private System.Windows.Forms.CheckBox Toyota;
+        private System.Windows.Forms.CheckBox Skoda;
+        private System.Windows.Forms.CheckBox Mitsubishi;
+        private System.Windows.Forms.CheckBox Ford;
         private System.Windows.Forms.Label Марка;
         private System.Windows.Forms.TextBox prieceFrom;
         private System.Windows.Forms.Label Цена;

@@ -53,6 +53,12 @@
       <DependentUpon>brandview.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBase.cs" />
+    <Compile Include="Favorites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Favorites.Designer.cs">
+      <DependentUpon>Favorites.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     </Compile>
     <EmbeddedResource Include="brandview.resx">
       <DependentUpon>brandview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Favorites.resx">
+      <DependentUpon>Favorites.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -200,8 +209,9 @@
     <Content Include="Cars\NissanPatrol.jpg" />
     <Content Include="Cars\NissanQashqai.jpg" />
     <Content Include="Cars\NissanX-Trail.jpg" />
-    <Content Include="Cars\ScodaScala.jpg" />
-    <Content Include="Cars\ScodaYeti.jpg" />
+    <Content Include="Cars\SkodaRapid.jpg" />
+    <Content Include="Cars\SkodaScala.jpg" />
+    <Content Include="Cars\SkodaYeti.jpg" />
     <Content Include="Cars\SkodaCitigo.jpg" />
     <Content Include="Cars\SkodaEnyaq iV.jpg" />
     <Content Include="Cars\SkodaFabia.jpg" />

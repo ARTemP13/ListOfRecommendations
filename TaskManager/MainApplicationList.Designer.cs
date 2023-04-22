@@ -97,6 +97,7 @@
             this.FavoritesButton.TabIndex = 9;
             this.FavoritesButton.Text = "Избранное";
             this.FavoritesButton.UseVisualStyleBackColor = false;
+            this.FavoritesButton.Click += new System.EventHandler(this.FavoritesButton_Click);
             // 
             // selectionsButton
             // 
@@ -125,6 +126,7 @@
             this.FeaturesButton.TabIndex = 11;
             this.FeaturesButton.Text = "Характеристики";
             this.FeaturesButton.UseVisualStyleBackColor = false;
+            this.FeaturesButton.Click += new System.EventHandler(this.FeaturesButton_Click);
             // 
             // ReccomendationLabel
             // 
@@ -164,6 +166,7 @@
             this.PlusCar.TabIndex = 14;
             this.PlusCar.Text = "Добавить машину";
             this.PlusCar.UseVisualStyleBackColor = false;
+            this.PlusCar.Click += new System.EventHandler(this.PlusCar_Click);
             // 
             // MainApplicationList
             // 
