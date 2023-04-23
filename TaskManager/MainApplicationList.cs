@@ -69,13 +69,18 @@ namespace TaskManager
         public MainApplicationList(string email)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             DoubleBuffered = true;
             SetRoundedShape(FavoritesButton, 40);
             SetRoundedShape(selectionsButton, 40);
             SetRoundedShape(FeaturesButton, 40);
             SetRoundedShape(PlusCar, 40);
             ThisEmail = email;
+            Setting.Visible = false;
+            panel4.Visible = false;
+            SetRoundedShape(Setting, 40);
             CreateCards();
+            setting();
             
         }
         string name = "", surname = "";
@@ -139,7 +144,7 @@ namespace TaskManager
                 PictureBox pictureBox = new PictureBox();
                 try
                 {
-                    pictureBox.Image = Image.FromFile($"C:/Users/Артем/source/repos/TaskManager/TaskManager/Cars/{car[i]}{model[i]}.jpg");
+                    pictureBox.Image = Image.FromFile($"../../Cars/{car[i]}{model[i]}.jpg");
                 } catch { 
                 }
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -206,7 +211,7 @@ namespace TaskManager
                 panel3.Controls.Add(numericUpDown1);
 
                 PictureBox pictureBox1 = new PictureBox();
-                pictureBox1.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/Plus1.png");
+                pictureBox1.Image = Image.FromFile("../../picture/Plus1.png");
                 pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBox1.Width = 50;
                 pictureBox1.Cursor = Cursors.Hand;
@@ -217,11 +222,11 @@ namespace TaskManager
                 PictureBox pictureBox2 = new PictureBox();
                 if (favorite[i] == 1)
                 {
-                    pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeFill.png");
+                    pictureBox2.Image = Image.FromFile("../../picture/LikeFill.png");
                     FavoriteNow = 1;
                 } else
                 {
-                    pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png");
+                    pictureBox2.Image = Image.FromFile("../../picture/LikeEmpty.png");
                     FavoriteNow = 0;
                 }
                 pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -265,7 +270,69 @@ namespace TaskManager
 
         private void PlusCar_Click(object sender, EventArgs e)
         {
+            AddCar addCar = new AddCar(name, surname);
+            addCar.Show();
+        }
 
+        private void User_Click(object sender, EventArgs e)
+        {
+            if(Setting.Visible == false)
+            {
+                Setting.Visible = true;
+            } else
+            {
+                Setting.Visible = false;
+            }
+            
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 form1 = new Form1();
+            form1.Show();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            panel4.Visible = false;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            panel4.Visible = true;
+            Setting.Visible = false;
+        }
+        public void setting()
+        {
+            label1.Text = surname + " " + name;
+            label4.Text = ThisEmail;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if(textBox4.Text != "")
+            {
+                try
+                {
+                    dataBase.openConnection();
+
+                    string query1 = $"UPDATE accounts_db SET passwords = '{Hashing.PasswordHashing(textBox4.Text)}' WHERE emails = '{ThisEmail}'";
+                    SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
+                    command1.ExecuteNonQuery();
+                    dataBase.closedConnection();
+                    MessageBox.Show("Пароль успешно изменен");
+                    panel4.Visible = false;
+                } catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка изменеие пароля, поробуйте еще раз!\n" + ex);
+                }
+                
+            } else
+            {
+                MessageBox.Show("Строка пуста");
+            }
+            
         }
 
         public void pictureBox2_Click(object sender, CustomEventArgs e)
@@ -287,7 +354,7 @@ namespace TaskManager
             pictureBox2.Focus();
             if (FavoriteNow == 0)
             {
-                pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeFill.png");
+                pictureBox2.Image = Image.FromFile("../../picture/LikeFill.png");
                 FavoriteNow = 1;
 
                 string query1 = $"UPDATE [{name}{surname}Table] SET Favorites = 1 WHERE id = @id";
@@ -299,7 +366,7 @@ namespace TaskManager
             }
             else
             {
-                pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png");
+                pictureBox2.Image = Image.FromFile("../../picture/LikeEmpty.png");
                 FavoriteNow = 0;
                 string query1 = $"UPDATE {name}{surname}Table SET Favorites = 0 WHERE id = @id";
                 SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());

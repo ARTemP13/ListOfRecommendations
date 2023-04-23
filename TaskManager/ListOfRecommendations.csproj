@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCar.Designer.cs">
+      <DependentUpon>AddCar.cs</DependentUpon>
+    </Compile>
     <Compile Include="brandview.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     <Compile Include="SignUp.Designer.cs">
       <DependentUpon>SignUp.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddCar.resx">
+      <DependentUpon>AddCar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="brandview.resx">
       <DependentUpon>brandview.cs</DependentUpon>
     </EmbeddedResource>
@@ -249,6 +258,8 @@
     <Content Include="Cars\VolkswagenTouareg.jpg" />
     <Content Include="Cars\VolkswagenTouran.jpg" />
     <Content Include="Cars\VolkswagenUp!.jpg" />
+    <Content Include="picture\User1.png" />
+    <Content Include="picture\user.png" />
     <Content Include="picture\Plus1.png" />
     <Content Include="picture\StarFill.png" />
     <Content Include="picture\StarEmpty.png" />
