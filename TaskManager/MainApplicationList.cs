@@ -38,6 +38,10 @@ namespace TaskManager
         {
             public int FavoriteNow { get; set; }
         }
+        public class CustomEventArgs1 : EventArgs
+        {
+            public int IDCar { get; set; }
+        }
 
         public class CustomFlowLayoutPanel : FlowLayoutPanel
         {
@@ -208,7 +212,9 @@ namespace TaskManager
                 numericUpDown1.Minimum = 0;
                 numericUpDown1.Value = score[i];
                 numericUpDown1.Cursor = Cursors.Hand;
+                numericUpDown1.Tag = idcar;
                 panel3.Controls.Add(numericUpDown1);
+                numericUpDown1.ValueChanged += new EventHandler(numericUpDown1_ValueChanged);
 
                 PictureBox pictureBox1 = new PictureBox();
                 pictureBox1.Image = Image.FromFile("../../picture/Plus1.png");
@@ -253,7 +259,19 @@ namespace TaskManager
         }
         int count = 0;
         int[] WasCard = new int[130];
-
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown numericUpDown = (NumericUpDown)sender;
+            decimal value = numericUpDown.Value;
+            idcar = (int)numericUpDown.Tag;
+            MessageBox.Show("----" + value + name + surname + idcar);
+            dataBase.openConnection();
+            string query1 = $"UPDATE {name}{surname}Table SET Score = {value} WHERE id = @id";
+            SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
+            command1.Parameters.AddWithValue("@id", idcar);
+            command1.ExecuteNonQuery();
+            dataBase.closedConnection();
+        }
         private void FavoritesButton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -333,6 +351,13 @@ namespace TaskManager
                 MessageBox.Show("Строка пуста");
             }
             
+        }
+
+        private void selectionsButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Selections selections = new Selections(name, surname, ThisEmail);
+            selections.Show();
         }
 
         public void pictureBox2_Click(object sender, CustomEventArgs e)

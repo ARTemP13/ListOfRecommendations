@@ -25,6 +25,12 @@ namespace TaskManager
             InitializeComponent();
             SetRoundedShape(AddButton, 40);
             SetRoundedShape(InsertePicture, 40);
+            //SetRoundedShape(Selectcar, 30);
+            //SetRoundedShape(comboBoxCountry, 30);
+            //SetRoundedShape(textBoxModel, 30);
+            //SetRoundedShape(textBoxPower, 30);
+            //SetRoundedShape(textBoxPrice, 30);
+            //SetRoundedShape(textBoxSpeed, 30);
             StartPosition = FormStartPosition.CenterScreen;
             NameTable = name;
             SurnameTable = surname;

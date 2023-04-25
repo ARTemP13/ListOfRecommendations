@@ -252,6 +252,13 @@ namespace TaskManager
                         SqlCommand sqlCommand22 = new SqlCommand(querystring22, dataBase.getConnection());
                         sqlCommand22.ExecuteNonQuery();
 
+                        string querystring23 = $"ALTER TABLE [{createName}{createSurname}Table] ADD AllPlayList VARCHAR(50) DEFAULT 1;";
+                        SqlCommand sqlCommand23 = new SqlCommand(querystring23, dataBase.getConnection());
+                        sqlCommand23.ExecuteNonQuery();
+                        string querystring24 = $"UPDATE [{createName}{createSurname}Table] SET AllPlayList = 'Empty' WHERE AllPlayList IS NULL;";
+                        SqlCommand sqlCommand24 = new SqlCommand(querystring24, dataBase.getConnection());
+                        sqlCommand24.ExecuteNonQuery();
+
 
                         MessageBox.Show("Аккаунт успешно создан!");
                         this.Hide();

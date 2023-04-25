@@ -85,6 +85,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Selections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Selections.Designer.cs">
+      <DependentUpon>Selections.cs</DependentUpon>
+    </Compile>
     <Compile Include="SignUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Selections.resx">
+      <DependentUpon>Selections.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignUp.resx">
       <DependentUpon>SignUp.cs</DependentUpon>
@@ -258,6 +267,8 @@
     <Content Include="Cars\VolkswagenTouareg.jpg" />
     <Content Include="Cars\VolkswagenTouran.jpg" />
     <Content Include="Cars\VolkswagenUp!.jpg" />
+    <Content Include="picture\AvaCollection.jpg" />
+    <Content Include="picture\AvaCollection1.jpg" />
     <Content Include="picture\User1.png" />
     <Content Include="picture\user.png" />
     <Content Include="picture\Plus1.png" />
