@@ -53,16 +53,6 @@ namespace TaskManager
             panel1.FlowDirection = FlowDirection.LeftToRight;
             panel1.AutoSize = true;
             dataBase.openConnection();
-            //string queryTable = $"SELECT names, surnames FROM accounts_db WHERE emails = '{ThisEmail}';";
-            //SqlCommand command = new SqlCommand(queryTable, dataBase.getConnection());
-            //SqlDataReader reader = command.ExecuteReader();
-
-            //if (reader.Read())
-            //{
-            //    name = reader.GetString(0);
-            //    surname = reader.GetString(1);
-            //}
-            //reader.Close();
             MessageBox.Show("---" + NameCollection);
             string query1 = $"SELECT COUNT(*) FROM {NameTable}{SurnameTable}Table WHERE PlayList = '{NameCollection}'";
             SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
@@ -156,13 +146,6 @@ namespace TaskManager
 
                 SetRoundedShape(panel3, 40);
 
-                Label label5 = new Label();
-                label5.Text = "Оценка: ";
-                label5.Location = new Point(700, 250);
-                label5.AutoSize = true;
-                label5.Font = new Font("Segoe UI Variable Display Semib", 12);
-                panel3.Controls.Add(label5);
-
                 Label label6 = new Label();
                 label6.Text = "X";
                 label6.Location = new Point(700, 250);
@@ -170,57 +153,12 @@ namespace TaskManager
                 label6.Font = new Font("Segoe UI Variable Display Semib", 12);
                 panel3.Controls.Add(label6);
 
-                //NumericUpDown numericUpDown1 = new NumericUpDown();
-                //numericUpDown1.Width = 40;
-                //numericUpDown1.Height = 50;
-                //numericUpDown1.Location = new Point(795, 255);
-                //numericUpDown1.Maximum = 9;
-                //numericUpDown1.Minimum = 0;
-                //numericUpDown1.Value = score[i];
-                //numericUpDown1.Cursor = Cursors.Hand;
-                //numericUpDown1.Tag = idcar;
-                //panel3.Controls.Add(numericUpDown1);
-                //numericUpDown1.ValueChanged += new EventHandler(numericUpDown1_ValueChanged);
-
-                //PictureBox pictureBox1 = new PictureBox();
-                //pictureBox1.Image = Image.FromFile("../../picture/Plus1.png");
-                //pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-                //pictureBox1.Width = 50;
-                //pictureBox1.Cursor = Cursors.Hand;
-                //pictureBox1.Height = 50;
-                //pictureBox1.Location = new Point(880, 240);
-                //panel3.Controls.Add(pictureBox1);
-
-                //PictureBox pictureBox2 = new PictureBox();
-                //if (favorite[i] == 1)
-                //{
-                //    pictureBox2.Image = Image.FromFile("../../picture/LikeFill.png");
-                //    FavoriteNow = 1;
-                //}
-                //else
-                //{
-                //    pictureBox2.Image = Image.FromFile("../../picture/LikeEmpty.png");
-                //    FavoriteNow = 0;
-                //}
-                //pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-                //pictureBox2.Enabled = true;
-                //pictureBox2.Cursor = Cursors.Hand;
-                //pictureBox2.Width = 40;
-                //pictureBox2.Height = 30;
-                //pictureBox2.Location = new Point(843, 250);
-                //pictureBox2.Tag = idcar;
-                //panel3.Controls.Add(pictureBox2);
-
-
                 foreach (Control control in panel1.Controls)
                 {
                     control.Margin = new Padding(-1, 10, 10, 10);
                 }
 
                 flowLayoutPanel1.Controls.Add(panel1);
-                //CustomEventArgs customEventArgs = new CustomEventArgs();
-                //customEventArgs.FavoriteNow = favorite[i];
-                //pictureBox2.Click += (sender, e) => pictureBox2_Click(sender, customEventArgs);
             }
             dataBase.closedConnection();
         }
@@ -229,25 +167,10 @@ namespace TaskManager
 
         private void FavoritesButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             Selections selections = new Selections(NameTable, SurnameTable, ThisEmail);
             selections.Show();
+            this.Close();
         }
-
-        //private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        //{
-        //    NumericUpDown numericUpDown = (NumericUpDown)sender;
-        //    decimal value = numericUpDown.Value;
-        //    idcar = (int)numericUpDown.Tag;
-        //    idcar = idcar % 100;
-        //    MessageBox.Show("----" + value + name + surname + idcar);
-        //    dataBase.openConnection();
-        //    string query1 = $"UPDATE {name}{surname}Table SET Score = {value} WHERE id = @id";
-        //    SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
-        //    command1.Parameters.AddWithValue("@id", idcar);
-        //    command1.ExecuteNonQuery();
-        //    dataBase.closedConnection();
-        //}
         public void pictureBox2_Click(object sender, CustomEventArgs e)
         {
             PictureBox pictureBox2 = (PictureBox)sender;
@@ -301,9 +224,9 @@ namespace TaskManager
             path.AddArc(0, 0, radius, radius, 180, 90);
             control.Region = new Region(path);
         }
-        private void pictureLogo_Click(object sender, EventArgs e)
-        {
+        //private void pictureLogo_Click(object sender, EventArgs e)
+        //{
 
-        }
+        //}
     }
 }

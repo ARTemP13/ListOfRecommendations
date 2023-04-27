@@ -106,7 +106,7 @@ namespace TaskManager
                 SqlCommand command2 = new SqlCommand(query2, dataBase.getConnection());
                 command2.ExecuteNonQuery();
                 dataBase.closedConnection();
-                this.Hide();
+                this.Close();
             }
             
         }

@@ -76,7 +76,7 @@
             this.flowLayoutPanelFavorite.Location = new System.Drawing.Point(207, 118);
             this.flowLayoutPanelFavorite.Name = "flowLayoutPanelFavorite";
             this.flowLayoutPanelFavorite.Padding = new System.Windows.Forms.Padding(0, 15, 15, 15);
-            this.flowLayoutPanelFavorite.Size = new System.Drawing.Size(987, 614);
+            this.flowLayoutPanelFavorite.Size = new System.Drawing.Size(988, 639);
             this.flowLayoutPanelFavorite.TabIndex = 20;
             // 
             // VerticalLine
@@ -135,9 +135,11 @@
             this.Controls.Add(this.pictureLogo);
             this.Controls.Add(this.AvtoLogo);
             this.Controls.Add(this.VerticalLine);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Favorites";
-            this.Text = "Favorites";
+            this.Text = "Избранное";
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

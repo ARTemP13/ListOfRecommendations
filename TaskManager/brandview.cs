@@ -27,19 +27,7 @@ namespace TaskManager
             ThisEmail = Email;
             SetRoundedShape(SaveRec, 20);
             InsertData();
-            //priceTo.Text = "100.000.000";
-            //priceTo.ForeColor = Color.Silver;
-            //prieceFrom.Text = "1";
-            //prieceFrom.ForeColor = Color.Silver;
-            //speedFrom.Text = "1";
-            //speedFrom.ForeColor = Color.Silver;
-            //speedTo.Text = "450";
-            //speedTo.ForeColor = Color.Silver;
-            //PowerFrom.Text = "1";
-            //PowerFrom.ForeColor = Color.Silver;
-            //PowerTo.Text = "5000";
-            //PowerTo.ForeColor = Color.Silver;
-
+            StartPosition = FormStartPosition.CenterScreen;
         }
         public void InsertData()
         {
@@ -217,114 +205,6 @@ namespace TaskManager
             path.AddArc(0, 0, radius, radius, 180, 90);
             control.Region = new Region(path);
         }
-        //private void prieceFrom_Enter(object sender, EventArgs e)
-        //{
-        //    if(prieceFrom.Text == "1")
-        //    {
-        //        prieceFrom.Text = "";
-        //        prieceFrom.ForeColor = Color.Black;
-        //    }
-        //}
-
-        //private void prieceFrom_Leave(object sender, EventArgs e)
-        //{
-        //    if (prieceFrom.Text == "")
-        //    {
-        //        prieceFrom.Text = "1";
-        //        prieceFrom.ForeColor = Color.Silver;
-        //    }
-        //}
-
-        //private void priceTo_Enter(object sender, EventArgs e)
-        //{
-        //    if (priceTo.Text == "100.000.000")
-        //    {
-        //        priceTo.Text = "";
-        //        priceTo.ForeColor = Color.Black;
-        //    }
-        //}
-
-        //private void priceTo_Leave(object sender, EventArgs e)
-        //{
-        //    if (priceTo.Text == "")
-        //    {
-        //        priceTo.Text = "100.000.000";
-        //        priceTo.ForeColor = Color.Silver;
-        //    }
-        //}
-
-        //private void speedFrom_Enter(object sender, EventArgs e)
-        //{
-        //    if (speedFrom.Text == "1")
-        //    {
-        //        speedFrom.Text = "";
-        //        speedFrom.ForeColor = Color.Black;
-        //    }
-        //}
-
-        //private void speedFrom_Leave(object sender, EventArgs e)
-        //{
-        //    if (speedFrom.Text == "")
-        //    {
-        //        speedFrom.Text = "1";
-        //        speedFrom.ForeColor = Color.Silver;
-        //    }
-        //}
-
-        //private void speedTo_Enter(object sender, EventArgs e)
-        //{
-        //    if (speedTo.Text == "450")
-        //    {
-        //        speedTo.Text = "";
-        //        speedTo.ForeColor = Color.Black;
-        //    }
-        //}
-
-        //private void PowerFrom_Leave(object sender, EventArgs e)
-        //{
-        //    if (PowerFrom.Text == "")
-        //    {
-        //        PowerFrom.Text = "1";
-        //        PowerFrom.ForeColor = Color.Silver;
-        //    }
-        //}
-
-        //private void PowerFrom_Enter(object sender, EventArgs e)
-        //{
-        //    if (PowerFrom.Text == "1")
-        //    {
-        //        PowerFrom.Text = "";
-        //        PowerFrom.ForeColor = Color.Black;
-        //    }
-        //}
-
-        //private void PowerTo_Leave(object sender, EventArgs e)
-        //{
-        //    if (PowerTo.Text == "")
-        //    {
-        //        PowerTo.Text = "5000";
-        //        PowerTo.ForeColor = Color.Silver;
-        //    }
-        //}
-
-        //private void PowerTo_Enter(object sender, EventArgs e)
-        //{
-        //    if (PowerTo.Text == "5000")
-        //    {
-        //        PowerTo.Text = "";
-        //        PowerTo.ForeColor = Color.Black;
-        //    }
-        //}
-
-        //private void speedTo_Leave(object sender, EventArgs e)
-        //{
-        //    if (speedTo.Text == "")
-        //    {
-        //        speedTo.Text = "450";
-        //        speedTo.ForeColor = Color.Silver;
-        //    }
-        //}
-
         private void SaveRec_Click(object sender, EventArgs e)
         {
             dataBase.openConnection();
@@ -476,9 +356,9 @@ namespace TaskManager
             command20.ExecuteScalar();
 
             dataBase.closedConnection();
-            this.Hide();
             MainApplicationList mainApplicationList = new MainApplicationList(ThisEmail);
             mainApplicationList.Show();
+            this.Close();
         }
     }
 }

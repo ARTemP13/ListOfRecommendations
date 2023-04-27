@@ -45,6 +45,7 @@ namespace TaskManager
             InitializeComponent();
             SetRoundedShape(FavoritesButton, 40);
             SetRoundedShape(AddPlayList, 40);
+            StartPosition = FormStartPosition.CenterScreen;
             NameTable = name;
             SurnameTable = surname;
             ThisEmail = email;
@@ -126,8 +127,6 @@ namespace TaskManager
                 pictureBox2.Height = 400;
                 panel1.Controls.Add(pictureBox2);
 
-                
-
                 Label label = new Label();
                 label.Text = $"{ActuallyPlayList[i]}";
                 label.ForeColor = Color.White;
@@ -147,36 +146,22 @@ namespace TaskManager
                 customEventArgs.NameCollection = label.Text;
                 label1.Click += (sender, e) => label1_Click(sender, customEventArgs);
 
-                //label1.Click += new EventHandler(label1_Click);
-
-
                 CustomEventArgs1 customEventArgs1 = new CustomEventArgs1();
                 customEventArgs1.NameCollection = label.Text;
                 pictureBox2.Click += (sender, e) => pictureBox2_Click(sender, customEventArgs1);
-
-
-                //pictureBox2.Click += new EventHandler(pictureBox2_Click);
-
             }
-
             foreach (Control control in panel1.Controls)
             {
                 control.Margin = new Padding(10, 10, 10, 10);
             }
-
-
-
-
-
             flowLayoutPanel1.Controls.Add(panel1);
-
             dataBase.closedConnection();
         }
         public void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Hide();
             PlayListaDay playListaDay = new PlayListaDay(NameTable, SurnameTable, ThisEmail);
-            playListaDay.Show();
+            playListaDay.ShowDialog();
         }
         
             public void label1_Click(object sender, CustomEventArgs e)
@@ -184,7 +169,6 @@ namespace TaskManager
             
             dataBase.openConnection();
             string label = e.NameCollection;
-            MessageBox.Show("----" + label);
             string query1 = $"UPDATE {NameTable}{SurnameTable}Table SET AllPlayList = 'Empty' WHERE AllPlayList = '{label}'";
             SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
             command1.ExecuteNonQuery();
@@ -194,9 +178,9 @@ namespace TaskManager
         }
         public void pictureBox2_Click(object sender, CustomEventArgs1 e)
         {
-            this.Hide();
             Collection collection = new Collection(NameTable, SurnameTable, e.NameCollection, ThisEmail);
             collection.Show();
+            this.Close();
         }
         private void AddPlayList_Click(object sender, EventArgs e)
         {
@@ -240,9 +224,9 @@ namespace TaskManager
 
         private void FavoritesButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             MainApplicationList mainApplicationList = new MainApplicationList(ThisEmail);
             mainApplicationList.Show();
+            this.Close();
         }
         public static void SetRoundedShape(Control control, int radius)
         {

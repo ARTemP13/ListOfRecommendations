@@ -36,6 +36,7 @@ namespace TaskManager
         public Favorites(string name, string surname, string email)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             NameTable = name;
             SurnameTable = surname;
             ThisEmail = email;
@@ -51,9 +52,10 @@ namespace TaskManager
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            
             MainApplicationList mainApplicationList = new MainApplicationList(ThisEmail);
             mainApplicationList.Show();
+            this.Close();
         }
 
 

@@ -54,9 +54,9 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.AddPlayList = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).BeginInit();
             this.HorizontLine.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.User)).BeginInit();
@@ -144,7 +144,7 @@
             this.selectionsButton.Name = "selectionsButton";
             this.selectionsButton.Size = new System.Drawing.Size(168, 54);
             this.selectionsButton.TabIndex = 10;
-            this.selectionsButton.Text = "Подборки";
+            this.selectionsButton.Text = "Коллекции";
             this.selectionsButton.UseVisualStyleBackColor = false;
             this.selectionsButton.Click += new System.EventHandler(this.selectionsButton_Click);
             // 
@@ -177,7 +177,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.AutoScrollMargin = new System.Drawing.Size(200, 200);
+            this.flowLayoutPanel1.AutoScrollMargin = new System.Drawing.Size(1000, 1000);
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.flowLayoutPanel1.BackgroundImage = global::TaskManager.Properties.Resources.BackGround2;
             this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -369,27 +369,6 @@
             this.AddPlayList.Size = new System.Drawing.Size(473, 516);
             this.AddPlayList.TabIndex = 18;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(93, 34);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(296, 37);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Добавить в плейлист";
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.AutoScroll = true;
-            this.flowLayoutPanel2.BackgroundImage = global::TaskManager.Properties.Resources.BackGround2;
-            this.flowLayoutPanel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 106);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(467, 407);
-            this.flowLayoutPanel2.TabIndex = 1;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -401,6 +380,27 @@
             this.label8.TabIndex = 2;
             this.label8.Text = " X";
             this.label8.Click += new System.EventHandler(this.label8_Click);
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoScroll = true;
+            this.flowLayoutPanel2.BackgroundImage = global::TaskManager.Properties.Resources.BackGround2;
+            this.flowLayoutPanel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 106);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(467, 407);
+            this.flowLayoutPanel2.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(93, 34);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(296, 37);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Добавить в плейлист";
             // 
             // MainApplicationList
             // 
@@ -423,7 +423,9 @@
             this.Controls.Add(this.pictureLogo);
             this.Controls.Add(this.AvtoLogo);
             this.Controls.Add(this.VerticalLine);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainApplicationList";
             this.Text = "Avto";
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).EndInit();

@@ -49,7 +49,6 @@
             this.pictureLogo.Size = new System.Drawing.Size(85, 79);
             this.pictureLogo.TabIndex = 12;
             this.pictureLogo.TabStop = false;
-            this.pictureLogo.Click += new System.EventHandler(this.pictureLogo_Click);
             // 
             // AvtoLogo
             // 
@@ -136,7 +135,9 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.FavoritesButton);
             this.Controls.Add(this.VerticalLine);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Collection";
             this.Text = "Коллекция";
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).EndInit();

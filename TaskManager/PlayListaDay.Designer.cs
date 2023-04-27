@@ -135,7 +135,9 @@
             this.Controls.Add(this.ReccomendationLabel);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.VerticalLine);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "PlayListaDay";
             this.Text = "Плейлист дня";
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).EndInit();

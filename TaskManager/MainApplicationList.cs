@@ -41,35 +41,7 @@ namespace TaskManager
         public class CustomEventArgs : EventArgs
         {
             public int FavoriteNow { get; set; }
-        }
-        
-
-        public class CustomFlowLayoutPanel : FlowLayoutPanel
-        {
-            public CustomFlowLayoutPanel()
-                : base()
-            {
-                this.SetStyle(ControlStyles.UserPaint, true);
-                this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-                this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            }
-
-            protected override void OnScroll(ScrollEventArgs se)
-            {
-                this.Invalidate();
-
-                base.OnScroll(se);
-            }
-            protected override CreateParams CreateParams
-            {
-                get
-                {
-                    CreateParams cp = base.CreateParams;
-                    cp.ExStyle |= 0x02000000;
-                    return cp;
-                }
-            }
-        }
+        } 
         string ThisEmail;
         public MainApplicationList(string email)
         {
@@ -90,6 +62,7 @@ namespace TaskManager
             AddPlayList.Visible = false;
             label8.Cursor = Cursors.Hand;
             
+
         }
         string name = "", surname = "";
         string cars = "", models = "";
@@ -99,6 +72,7 @@ namespace TaskManager
             MyFlowLayoutPanel panel1 = new MyFlowLayoutPanel();
             panel1.FlowDirection = FlowDirection.LeftToRight;
             panel1.AutoSize = true;
+
             dataBase.openConnection();
             string queryTable = $"SELECT names, surnames FROM accounts_db WHERE emails = '{ThisEmail}';";
             SqlCommand command = new SqlCommand(queryTable, dataBase.getConnection());
@@ -346,16 +320,17 @@ namespace TaskManager
         }
         private void FavoritesButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            
             Favorites favorites = new Favorites(name, surname, ThisEmail);
             favorites.Show();
+            this.Close();
         }
 
         private void FeaturesButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             brandview brandview = new brandview(name, surname, ThisEmail);
             brandview.Show();
+            this.Close();
         }
 
         private void PlusCar_Click(object sender, EventArgs e)
@@ -378,9 +353,9 @@ namespace TaskManager
 
         private void label3_Click(object sender, EventArgs e)
         {
-            this.Hide();
             Form1 form1 = new Form1();
             form1.Show();
+            this.Close();
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -427,9 +402,9 @@ namespace TaskManager
 
         private void selectionsButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             Selections selections = new Selections(name, surname, ThisEmail);
-            selections.ShowDialog();
+            selections.Show();
+            this.Close();
         }
 
         private void label8_Click(object sender, EventArgs e)

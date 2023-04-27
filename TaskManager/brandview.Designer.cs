@@ -489,7 +489,9 @@
             this.Controls.Add(this.VerticalLine);
             this.Controls.Add(this.KIA);
             this.Controls.Add(this.Audi);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "brandview";
             this.Text = "Выбор рекомендаций";
             this.ResumeLayout(false);
