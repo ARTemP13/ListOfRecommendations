@@ -178,86 +178,106 @@ namespace TaskManager
 
                     if (sqlCommand.ExecuteNonQuery() == 1)
                     {
-                        string querystring1 = $"SELECT * INTO {createName}{createSurname}Table FROM cars_db";
-                        SqlCommand sqlCommand1 = new SqlCommand(querystring1, dataBase.getConnection());
-                        sqlCommand1.ExecuteNonQuery();
-                        string querystring2 = $"ALTER TABLE [{createName}{createSurname}Table] ADD Score INT DEFAULT 0;";
-                        SqlCommand sqlCommand2 = new SqlCommand(querystring2, dataBase.getConnection());
-                        sqlCommand2.ExecuteNonQuery();
-                        string querystring3 = $"ALTER TABLE [{createName}{createSurname}Table] ADD Favorites INT DEFAULT 0;";
-                        SqlCommand sqlCommand3 = new SqlCommand(querystring3, dataBase.getConnection());
-                        sqlCommand3.ExecuteNonQuery();
-                        string querystring4 = $"UPDATE [{createName}{createSurname}Table] SET Score = 0 WHERE Score IS NULL;";
-                        SqlCommand sqlCommand4 = new SqlCommand(querystring4, dataBase.getConnection());
-                        sqlCommand4.ExecuteNonQuery();
-                        string querystring5 = $"UPDATE [{createName}{createSurname}Table] SET Favorites = 0 WHERE Favorites IS NULL;";
-                        SqlCommand sqlCommand5 = new SqlCommand(querystring5, dataBase.getConnection());
-                        sqlCommand5.ExecuteNonQuery();
-                        string querystring6 = $"ALTER TABLE [{createName}{createSurname}Table] ADD CarsSelect INT DEFAULT 1;";
-                        SqlCommand sqlCommand6 = new SqlCommand(querystring6, dataBase.getConnection());
-                        sqlCommand6.ExecuteNonQuery();
-                        string querystring7 = $"UPDATE [{createName}{createSurname}Table] SET CarsSelect = 1 WHERE CarsSelect IS NULL;";
-                        SqlCommand sqlCommand7 = new SqlCommand(querystring7, dataBase.getConnection());
-                        sqlCommand7.ExecuteNonQuery();
-                        string querystring8 = $"ALTER TABLE [{createName}{createSurname}Table] ADD PlayList VARCHAR(50);";
-                        SqlCommand sqlCommand8 = new SqlCommand(querystring8, dataBase.getConnection());
-                        sqlCommand8.ExecuteNonQuery();
+                        try
+                        {
+                            string querystring1 = $"SELECT * INTO {createName}{createSurname}Table FROM cars_db";
+                            SqlCommand sqlCommand1 = new SqlCommand(querystring1, dataBase.getConnection());
+                            sqlCommand1.ExecuteNonQuery();
+                            string querystring2 = $"ALTER TABLE [{createName}{createSurname}Table] ADD Score INT DEFAULT 0;";
+                            SqlCommand sqlCommand2 = new SqlCommand(querystring2, dataBase.getConnection());
+                            sqlCommand2.ExecuteNonQuery();
+                            string querystring3 = $"ALTER TABLE [{createName}{createSurname}Table] ADD Favorites INT DEFAULT 0;";
+                            SqlCommand sqlCommand3 = new SqlCommand(querystring3, dataBase.getConnection());
+                            sqlCommand3.ExecuteNonQuery();
+                            string querystring4 = $"UPDATE [{createName}{createSurname}Table] SET Score = 0 WHERE Score IS NULL;";
+                            SqlCommand sqlCommand4 = new SqlCommand(querystring4, dataBase.getConnection());
+                            sqlCommand4.ExecuteNonQuery();
+                            string querystring5 = $"UPDATE [{createName}{createSurname}Table] SET Favorites = 0 WHERE Favorites IS NULL;";
+                            SqlCommand sqlCommand5 = new SqlCommand(querystring5, dataBase.getConnection());
+                            sqlCommand5.ExecuteNonQuery();
+                            string querystring6 = $"ALTER TABLE [{createName}{createSurname}Table] ADD CarsSelect INT DEFAULT 1;";
+                            SqlCommand sqlCommand6 = new SqlCommand(querystring6, dataBase.getConnection());
+                            sqlCommand6.ExecuteNonQuery();
+                            string querystring7 = $"UPDATE [{createName}{createSurname}Table] SET CarsSelect = 1 WHERE CarsSelect IS NULL;";
+                            SqlCommand sqlCommand7 = new SqlCommand(querystring7, dataBase.getConnection());
+                            sqlCommand7.ExecuteNonQuery();
+                            string querystring8 = $"ALTER TABLE [{createName}{createSurname}Table] ADD PlayList VARCHAR(50);";
+                            SqlCommand sqlCommand8 = new SqlCommand(querystring8, dataBase.getConnection());
+                            sqlCommand8.ExecuteNonQuery();
 
-                        string querystring9 = $"ALTER TABLE [{createName}{createSurname}Table] ADD MinPrice INT DEFAULT 1;";
-                        SqlCommand sqlCommand9 = new SqlCommand(querystring9, dataBase.getConnection());
-                        sqlCommand9.ExecuteNonQuery();
-                        string querystring10 = $"UPDATE [{createName}{createSurname}Table] SET MinPrice = 1 WHERE MinPrice IS NULL;";
-                        SqlCommand sqlCommand10 = new SqlCommand(querystring10, dataBase.getConnection());
-                        sqlCommand10.ExecuteNonQuery();
+                            string querystring9 = $"ALTER TABLE [{createName}{createSurname}Table] ADD MinPrice INT DEFAULT 1;";
+                            SqlCommand sqlCommand9 = new SqlCommand(querystring9, dataBase.getConnection());
+                            sqlCommand9.ExecuteNonQuery();
+                            string querystring10 = $"UPDATE [{createName}{createSurname}Table] SET MinPrice = 1 WHERE MinPrice IS NULL;";
+                            SqlCommand sqlCommand10 = new SqlCommand(querystring10, dataBase.getConnection());
+                            sqlCommand10.ExecuteNonQuery();
 
-                        string querystring11 = $"ALTER TABLE [{createName}{createSurname}Table] ADD MaxPrice INT DEFAULT 1;";
-                        SqlCommand sqlCommand11 = new SqlCommand(querystring11, dataBase.getConnection());
-                        sqlCommand11.ExecuteNonQuery();
-                        string querystring12 = $"UPDATE [{createName}{createSurname}Table] SET MaxPrice = 100000000 WHERE MaxPrice IS NULL;";
-                        SqlCommand sqlCommand12 = new SqlCommand(querystring12, dataBase.getConnection());
-                        sqlCommand12.ExecuteNonQuery();
+                            string querystring11 = $"ALTER TABLE [{createName}{createSurname}Table] ADD MaxPrice INT DEFAULT 1;";
+                            SqlCommand sqlCommand11 = new SqlCommand(querystring11, dataBase.getConnection());
+                            sqlCommand11.ExecuteNonQuery();
+                            string querystring12 = $"UPDATE [{createName}{createSurname}Table] SET MaxPrice = 100000000 WHERE MaxPrice IS NULL;";
+                            SqlCommand sqlCommand12 = new SqlCommand(querystring12, dataBase.getConnection());
+                            sqlCommand12.ExecuteNonQuery();
 
-                        string querystring13 = $"ALTER TABLE [{createName}{createSurname}Table] ADD MinSpeed INT DEFAULT 1;";
-                        SqlCommand sqlCommand13 = new SqlCommand(querystring13, dataBase.getConnection());
-                        sqlCommand13.ExecuteNonQuery();
-                        string querystring14 = $"UPDATE [{createName}{createSurname}Table] SET MinSpeed = 1 WHERE MinSpeed IS NULL;";
-                        SqlCommand sqlCommand14 = new SqlCommand(querystring14, dataBase.getConnection());
-                        sqlCommand14.ExecuteNonQuery();
+                            string querystring13 = $"ALTER TABLE [{createName}{createSurname}Table] ADD MinSpeed INT DEFAULT 1;";
+                            SqlCommand sqlCommand13 = new SqlCommand(querystring13, dataBase.getConnection());
+                            sqlCommand13.ExecuteNonQuery();
+                            string querystring14 = $"UPDATE [{createName}{createSurname}Table] SET MinSpeed = 1 WHERE MinSpeed IS NULL;";
+                            SqlCommand sqlCommand14 = new SqlCommand(querystring14, dataBase.getConnection());
+                            sqlCommand14.ExecuteNonQuery();
 
-                        string querystring15 = $"ALTER TABLE [{createName}{createSurname}Table] ADD MxSpeed INT DEFAULT 1;";
-                        SqlCommand sqlCommand15 = new SqlCommand(querystring15, dataBase.getConnection());
-                        sqlCommand15.ExecuteNonQuery();
-                        string querystring16 = $"UPDATE [{createName}{createSurname}Table] SET MxSpeed = 450 WHERE MxSpeed IS NULL;";
-                        SqlCommand sqlCommand16 = new SqlCommand(querystring16, dataBase.getConnection());
-                        sqlCommand16.ExecuteNonQuery();
+                            string querystring15 = $"ALTER TABLE [{createName}{createSurname}Table] ADD MxSpeed INT DEFAULT 1;";
+                            SqlCommand sqlCommand15 = new SqlCommand(querystring15, dataBase.getConnection());
+                            sqlCommand15.ExecuteNonQuery();
+                            string querystring16 = $"UPDATE [{createName}{createSurname}Table] SET MxSpeed = 450 WHERE MxSpeed IS NULL;";
+                            SqlCommand sqlCommand16 = new SqlCommand(querystring16, dataBase.getConnection());
+                            sqlCommand16.ExecuteNonQuery();
 
-                        string querystring17 = $"ALTER TABLE [{createName}{createSurname}Table] ADD mPower INT DEFAULT 1;";
-                        SqlCommand sqlCommand17 = new SqlCommand(querystring17, dataBase.getConnection());
-                        sqlCommand17.ExecuteNonQuery();
-                        string querystring18 = $"UPDATE [{createName}{createSurname}Table] SET mPower = 1 WHERE mPower IS NULL;";
-                        SqlCommand sqlCommand18 = new SqlCommand(querystring18, dataBase.getConnection());
-                        sqlCommand18.ExecuteNonQuery();
+                            string querystring17 = $"ALTER TABLE [{createName}{createSurname}Table] ADD mPower INT DEFAULT 1;";
+                            SqlCommand sqlCommand17 = new SqlCommand(querystring17, dataBase.getConnection());
+                            sqlCommand17.ExecuteNonQuery();
+                            string querystring18 = $"UPDATE [{createName}{createSurname}Table] SET mPower = 1 WHERE mPower IS NULL;";
+                            SqlCommand sqlCommand18 = new SqlCommand(querystring18, dataBase.getConnection());
+                            sqlCommand18.ExecuteNonQuery();
 
-                        string querystring19 = $"ALTER TABLE [{createName}{createSurname}Table] ADD MxPower INT DEFAULT 1;";
-                        SqlCommand sqlCommand19 = new SqlCommand(querystring19, dataBase.getConnection());
-                        sqlCommand19.ExecuteNonQuery();
-                        string querystring20 = $"UPDATE [{createName}{createSurname}Table] SET MxPower = 5000 WHERE MxPower IS NULL;";
-                        SqlCommand sqlCommand20 = new SqlCommand(querystring20, dataBase.getConnection());
-                        sqlCommand20.ExecuteNonQuery();
+                            string querystring19 = $"ALTER TABLE [{createName}{createSurname}Table] ADD MxPower INT DEFAULT 1;";
+                            SqlCommand sqlCommand19 = new SqlCommand(querystring19, dataBase.getConnection());
+                            sqlCommand19.ExecuteNonQuery();
+                            string querystring20 = $"UPDATE [{createName}{createSurname}Table] SET MxPower = 5000 WHERE MxPower IS NULL;";
+                            SqlCommand sqlCommand20 = new SqlCommand(querystring20, dataBase.getConnection());
+                            sqlCommand20.ExecuteNonQuery();
 
-                        string querystring21 = $"ALTER TABLE [{createName}{createSurname}Table] ADD CountrySelect INT DEFAULT 1;";
-                        SqlCommand sqlCommand21 = new SqlCommand(querystring21, dataBase.getConnection());
-                        sqlCommand21.ExecuteNonQuery();
-                        string querystring22 = $"UPDATE [{createName}{createSurname}Table] SET CountrySelect = 1 WHERE CountrySelect IS NULL;";
-                        SqlCommand sqlCommand22 = new SqlCommand(querystring22, dataBase.getConnection());
-                        sqlCommand22.ExecuteNonQuery();
+                            string querystring21 = $"ALTER TABLE [{createName}{createSurname}Table] ADD CountrySelect INT DEFAULT 1;";
+                            SqlCommand sqlCommand21 = new SqlCommand(querystring21, dataBase.getConnection());
+                            sqlCommand21.ExecuteNonQuery();
+                            string querystring22 = $"UPDATE [{createName}{createSurname}Table] SET CountrySelect = 1 WHERE CountrySelect IS NULL;";
+                            SqlCommand sqlCommand22 = new SqlCommand(querystring22, dataBase.getConnection());
+                            sqlCommand22.ExecuteNonQuery();
 
-                        string querystring23 = $"ALTER TABLE [{createName}{createSurname}Table] ADD AllPlayList VARCHAR(50) DEFAULT 1;";
-                        SqlCommand sqlCommand23 = new SqlCommand(querystring23, dataBase.getConnection());
-                        sqlCommand23.ExecuteNonQuery();
-                        string querystring24 = $"UPDATE [{createName}{createSurname}Table] SET AllPlayList = 'Empty' WHERE AllPlayList IS NULL;";
-                        SqlCommand sqlCommand24 = new SqlCommand(querystring24, dataBase.getConnection());
-                        sqlCommand24.ExecuteNonQuery();
+                            string querystring23 = $"ALTER TABLE [{createName}{createSurname}Table] ADD AllPlayList VARCHAR(50) DEFAULT 1;";
+                            SqlCommand sqlCommand23 = new SqlCommand(querystring23, dataBase.getConnection());
+                            sqlCommand23.ExecuteNonQuery();
+                            string querystring24 = $"UPDATE [{createName}{createSurname}Table] SET AllPlayList = 'Empty' WHERE AllPlayList IS NULL;";
+                            SqlCommand sqlCommand24 = new SqlCommand(querystring24, dataBase.getConnection());
+                            sqlCommand24.ExecuteNonQuery();
+
+                            string querystring25 = $"ALTER TABLE [{createName}{createSurname}Table] ADD NowDate DATE;";
+                            SqlCommand sqlCommand25 = new SqlCommand(querystring25, dataBase.getConnection());
+                            sqlCommand25.ExecuteNonQuery();
+
+                            string querystring26 = $"ALTER TABLE [{createName}{createSurname}Table] ADD Count INT DEFAULT 1;";
+                            SqlCommand sqlCommand26 = new SqlCommand(querystring26, dataBase.getConnection());
+                            sqlCommand26.ExecuteNonQuery();
+                            string querystring27 = $"UPDATE [{createName}{createSurname}Table] SET Count = 0 WHERE Count IS NULL;";
+                            SqlCommand sqlCommand27 = new SqlCommand(querystring27, dataBase.getConnection());
+                            sqlCommand27.ExecuteNonQuery();
+                        } catch
+                        {
+                            MessageBox.Show("Человек с таким именем и фамилией существует");
+                        }
+                        
+                        
+
 
 
                         MessageBox.Show("Аккаунт успешно создан!");

@@ -32,6 +32,14 @@ namespace TaskManager
             }
 
         }
+        public class CustomEventArgs : EventArgs
+        {
+            public string NameCollection { get; set; }
+        }
+        public class CustomEventArgs1 : EventArgs
+        {
+            public string NameCollection { get; set; }
+        }
         public Selections(string name, string surname, string email)
         {
             InitializeComponent();
@@ -80,7 +88,7 @@ namespace TaskManager
                         Count++;
                     }
                 }
-                } catch (Exception ex)
+                } catch
             {
                 Count = 0;
             }
@@ -105,9 +113,9 @@ namespace TaskManager
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Variable Display Semib", 20);
             pictureBox1.Controls.Add(label4);
+            pictureBox1.Click += new EventHandler(pictureBox1_Click);
 
-
-            for(int i = 0; i < Count; i++)
+            for (int i = 0; i < Count; i++)
             {
                 PictureBox pictureBox2 = new PictureBox();
                 pictureBox2.Image = Image.FromFile("../../picture/AvaCollection1.jpg");
@@ -117,6 +125,8 @@ namespace TaskManager
                 pictureBox2.Width = 290;
                 pictureBox2.Height = 400;
                 panel1.Controls.Add(pictureBox2);
+
+                
 
                 Label label = new Label();
                 label.Text = $"{ActuallyPlayList[i]}";
@@ -132,6 +142,21 @@ namespace TaskManager
                 label1.Location = new Point(273, -3);
                 label1.Font = new Font("", 10);
                 pictureBox2.Controls.Add(label1);
+
+                CustomEventArgs customEventArgs = new CustomEventArgs();
+                customEventArgs.NameCollection = label.Text;
+                label1.Click += (sender, e) => label1_Click(sender, customEventArgs);
+
+                //label1.Click += new EventHandler(label1_Click);
+
+
+                CustomEventArgs1 customEventArgs1 = new CustomEventArgs1();
+                customEventArgs1.NameCollection = label.Text;
+                pictureBox2.Click += (sender, e) => pictureBox2_Click(sender, customEventArgs1);
+
+
+                //pictureBox2.Click += new EventHandler(pictureBox2_Click);
+
             }
 
             foreach (Control control in panel1.Controls)
@@ -147,7 +172,32 @@ namespace TaskManager
 
             dataBase.closedConnection();
         }
-
+        public void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            PlayListaDay playListaDay = new PlayListaDay(NameTable, SurnameTable, ThisEmail);
+            playListaDay.Show();
+        }
+        
+            public void label1_Click(object sender, CustomEventArgs e)
+        {
+            
+            dataBase.openConnection();
+            string label = e.NameCollection;
+            MessageBox.Show("----" + label);
+            string query1 = $"UPDATE {NameTable}{SurnameTable}Table SET AllPlayList = 'Empty' WHERE AllPlayList = '{label}'";
+            SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
+            command1.ExecuteNonQuery();
+            dataBase.closedConnection();
+            flowLayoutPanel1.Controls.Clear();
+            CreateSelections();
+        }
+        public void pictureBox2_Click(object sender, CustomEventArgs1 e)
+        {
+            this.Hide();
+            Collection collection = new Collection(NameTable, SurnameTable, e.NameCollection, ThisEmail);
+            collection.Show();
+        }
         private void AddPlayList_Click(object sender, EventArgs e)
         {
             panel2.Visible = true;

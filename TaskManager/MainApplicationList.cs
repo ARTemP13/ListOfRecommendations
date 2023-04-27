@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Status;
 using static TaskManager.MainApplicationList;
 
 namespace TaskManager
@@ -38,10 +42,7 @@ namespace TaskManager
         {
             public int FavoriteNow { get; set; }
         }
-        public class CustomEventArgs1 : EventArgs
-        {
-            public int IDCar { get; set; }
-        }
+        
 
         public class CustomFlowLayoutPanel : FlowLayoutPanel
         {
@@ -79,12 +80,15 @@ namespace TaskManager
             SetRoundedShape(selectionsButton, 40);
             SetRoundedShape(FeaturesButton, 40);
             SetRoundedShape(PlusCar, 40);
+            SetRoundedShape(AddPlayList, 20);
             ThisEmail = email;
             Setting.Visible = false;
             panel4.Visible = false;
             SetRoundedShape(Setting, 40);
             CreateCards();
             setting();
+            AddPlayList.Visible = false;
+            label8.Cursor = Cursors.Hand;
             
         }
         string name = "", surname = "";
@@ -99,7 +103,7 @@ namespace TaskManager
             string queryTable = $"SELECT names, surnames FROM accounts_db WHERE emails = '{ThisEmail}';";
             SqlCommand command = new SqlCommand(queryTable, dataBase.getConnection());
             SqlDataReader reader = command.ExecuteReader();
-            
+
             if (reader.Read())
             {
                 name = reader.GetString(0);
@@ -137,7 +141,7 @@ namespace TaskManager
                     favorite.Add(reader3.GetInt32(8));
                 }
             }
-            if (rowCount >= 100) rowCount = 100;
+            if (rowCount >= 50) rowCount = 50;
             for (int i = 0; i < rowCount; i++)
             {
                 cars = car[i];
@@ -149,7 +153,9 @@ namespace TaskManager
                 try
                 {
                     pictureBox.Image = Image.FromFile($"../../Cars/{car[i]}{model[i]}.jpg");
-                } catch { 
+                }
+                catch
+                {
                 }
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox.Width = 400;
@@ -222,15 +228,18 @@ namespace TaskManager
                 pictureBox1.Width = 50;
                 pictureBox1.Cursor = Cursors.Hand;
                 pictureBox1.Height = 50;
+                pictureBox1.Tag = idcar;
                 pictureBox1.Location = new Point(880, 240);
                 panel3.Controls.Add(pictureBox1);
+                pictureBox1.Click += new EventHandler(pictureBox1_Click);
 
                 PictureBox pictureBox2 = new PictureBox();
                 if (favorite[i] == 1)
                 {
                     pictureBox2.Image = Image.FromFile("../../picture/LikeFill.png");
                     FavoriteNow = 1;
-                } else
+                }
+                else
                 {
                     pictureBox2.Image = Image.FromFile("../../picture/LikeEmpty.png");
                     FavoriteNow = 0;
@@ -243,7 +252,7 @@ namespace TaskManager
                 pictureBox2.Location = new Point(843, 250);
                 pictureBox2.Tag = idcar;
                 panel3.Controls.Add(pictureBox2);
-                
+
 
                 foreach (Control control in panel1.Controls)
                 {
@@ -259,12 +268,75 @@ namespace TaskManager
         }
         int count = 0;
         int[] WasCard = new int[130];
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            PictureBox pictureBox = (PictureBox)sender;
+            idcar = (int)pictureBox.Tag;
+            AddPlayList.Visible = true;
+            dataBase.openConnection();
+            string query1 = $"SELECT COUNT(*) FROM {name}{surname}Table WHERE AllPlayList != 'Empty'";
+            SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
+            int rowCount = 0;
+            rowCount = (int)command1.ExecuteScalar();
+            List<string> CountPlayList = new List<string>();
+            string query2 = $"SELECT AllPlayList FROM {name}{surname}Table WHERE AllPlayList != 'Empty'";
+            SqlCommand command2 = new SqlCommand(query2, dataBase.getConnection());
+            using (SqlDataReader reader3 = command2.ExecuteReader())
+            {
+                while (reader3.Read())
+                {
+                    CountPlayList.Add(reader3.GetString(0));
+                }
+            }
+            MyFlowLayoutPanel AddPlayListFlowLayoutPanel = new MyFlowLayoutPanel();
+            AddPlayListFlowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
+            AddPlayListFlowLayoutPanel.AutoSize = true;
+            for (int i = 0; i < rowCount; i++)
+            {
+                Panel cardPlayList = new Panel();
+                cardPlayList.BackColor = Color.Transparent;
+                cardPlayList.Size = new Size(440, 50);
+                AddPlayListFlowLayoutPanel.Controls.Add(cardPlayList);
+
+                Label NameCard = new Label();
+                NameCard.Text = $"{CountPlayList[i]}";
+                NameCard.Location = new Point(10, 10);
+                NameCard.AutoSize = true;
+                NameCard.Cursor = Cursors.Hand;
+                NameCard.Font = new Font("Segoe UI Variable Display Semib", 16);
+                NameCard.ForeColor = Color.White;
+                NameCard.Tag = idcar;
+                cardPlayList.Controls.Add(NameCard);
+                NameCard.Click += new EventHandler(NameCard_Click);
+
+
+
+
+
+                flowLayoutPanel2.Controls.Add(cardPlayList);
+            }
+            
+            dataBase.closedConnection();
+
+        }
+        private void NameCard_Click(object sender, EventArgs e)
+        {
+            Label label = (Label)sender;
+            idcar = (int)label.Tag;
+            dataBase.openConnection();
+            string query1 = $"UPDATE {name}{surname}Table SET PlayList = '{label.Text}' WHERE id = @id";
+            SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
+            command1.Parameters.AddWithValue("@id", idcar);
+            command1.ExecuteNonQuery();
+            dataBase.closedConnection();
+            MessageBox.Show($"Карточка добавлена в плейлист: {label.Text}");
+        }
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown numericUpDown = (NumericUpDown)sender;
             decimal value = numericUpDown.Value;
             idcar = (int)numericUpDown.Tag;
-            MessageBox.Show("----" + value + name + surname + idcar);
+            //MessageBox.Show("----" + value + name + surname + idcar);
             dataBase.openConnection();
             string query1 = $"UPDATE {name}{surname}Table SET Score = {value} WHERE id = @id";
             SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
@@ -357,7 +429,13 @@ namespace TaskManager
         {
             this.Hide();
             Selections selections = new Selections(name, surname, ThisEmail);
-            selections.Show();
+            selections.ShowDialog();
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+            AddPlayList.Visible = false;
+            flowLayoutPanel2.Controls.Clear();
         }
 
         public void pictureBox2_Click(object sender, CustomEventArgs e)
@@ -379,6 +457,7 @@ namespace TaskManager
             pictureBox2.Focus();
             if (FavoriteNow == 0)
             {
+                dataBase.openConnection();
                 pictureBox2.Image = Image.FromFile("../../picture/LikeFill.png");
                 FavoriteNow = 1;
 
@@ -387,6 +466,7 @@ namespace TaskManager
                 command1.Parameters.AddWithValue("@id", idcar);
 
                 command1.ExecuteNonQuery();
+                dataBase.closedConnection();
 
             }
             else

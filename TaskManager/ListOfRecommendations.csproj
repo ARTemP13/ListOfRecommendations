@@ -58,6 +58,12 @@
     <Compile Include="brandview.Designer.cs">
       <DependentUpon>brandview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Collection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Collection.Designer.cs">
+      <DependentUpon>Collection.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataBase.cs" />
     <Compile Include="Favorites.cs">
       <SubType>Form</SubType>
@@ -77,6 +83,12 @@
     </Compile>
     <Compile Include="MainApplicationList.Designer.cs">
       <DependentUpon>MainApplicationList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlayListaDay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayListaDay.Designer.cs">
+      <DependentUpon>PlayListaDay.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,6 +115,9 @@
     <EmbeddedResource Include="brandview.resx">
       <DependentUpon>brandview.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Collection.resx">
+      <DependentUpon>Collection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Favorites.resx">
       <DependentUpon>Favorites.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainApplicationList.resx">
       <DependentUpon>MainApplicationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayListaDay.resx">
+      <DependentUpon>PlayListaDay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
