@@ -157,7 +157,7 @@ namespace TaskManager
             string createName = textBox1.Text;
             string createSurname = textBox2.Text;
             string createEmail = textBox3.Text;
-            string createPassword = Hashing.PasswordHashing(textBox4.Text);
+            string createPassword = textBox4.Text;
 
             int dogs = 0;
             int dots = 0;
@@ -166,8 +166,9 @@ namespace TaskManager
                 if ('@' == createEmail[i]) dogs++;
                 if ('.' == createEmail[i]) dots++;
             }
-            if(dots == 1 && dogs == 1 && (createName != "имя" && createSurname != "фамилия" && createEmail != "example@gmail.com" && createPassword != "************"))
+            if(dots == 1 && dogs == 1 && createName != "имя" && createSurname != "фамилия" && createEmail != "example@gmail.com" && createPassword != "************")
             {
+                createPassword = Hashing.PasswordHashing(textBox4.Text);
                 if (!checkUser())
                 {
                     string querystring = $"insert into accounts_db (names, surnames, emails, passwords) values ('{createName}', '{createSurname}', '{createEmail}', '{createPassword}')";
@@ -254,7 +255,7 @@ namespace TaskManager
                             SqlCommand sqlCommand22 = new SqlCommand(querystring22, dataBase.getConnection());
                             sqlCommand22.ExecuteNonQuery();
 
-                            string querystring23 = $"ALTER TABLE [{createName}{createSurname}Table] ADD AllPlayList VARCHAR(50) DEFAULT 1;";
+                            string querystring23 = $"ALTER TABLE [{createName}{createSurname}Table] ADD AllPlayList VARCHAR(50);";
                             SqlCommand sqlCommand23 = new SqlCommand(querystring23, dataBase.getConnection());
                             sqlCommand23.ExecuteNonQuery();
                             string querystring24 = $"UPDATE [{createName}{createSurname}Table] SET AllPlayList = 'Empty' WHERE AllPlayList IS NULL;";

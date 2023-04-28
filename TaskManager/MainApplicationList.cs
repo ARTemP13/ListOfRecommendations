@@ -72,6 +72,7 @@ namespace TaskManager
             MyFlowLayoutPanel panel1 = new MyFlowLayoutPanel();
             panel1.FlowDirection = FlowDirection.LeftToRight;
             panel1.AutoSize = true;
+            panel1.AutoScroll = false;
 
             dataBase.openConnection();
             string queryTable = $"SELECT names, surnames FROM accounts_db WHERE emails = '{ThisEmail}';";
@@ -115,7 +116,7 @@ namespace TaskManager
                     favorite.Add(reader3.GetInt32(8));
                 }
             }
-            if (rowCount >= 50) rowCount = 50;
+            if (rowCount >= 50) rowCount = 20;
             for (int i = 0; i < rowCount; i++)
             {
                 cars = car[i];
@@ -295,28 +296,53 @@ namespace TaskManager
         }
         private void NameCard_Click(object sender, EventArgs e)
         {
+            
             Label label = (Label)sender;
             idcar = (int)label.Tag;
             dataBase.openConnection();
-            string query1 = $"UPDATE {name}{surname}Table SET PlayList = '{label.Text}' WHERE id = @id";
-            SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
-            command1.Parameters.AddWithValue("@id", idcar);
-            command1.ExecuteNonQuery();
-            dataBase.closedConnection();
-            MessageBox.Show($"Карточка добавлена в плейлист: {label.Text}");
+
+            string query2 = $"SELECT PlayList FROM {name}{surname}Table WHERE id = @id";
+            SqlCommand command2 = new SqlCommand(query2, dataBase.getConnection());
+            command2.Parameters.AddWithValue("@id", idcar);
+            object flag1 = (object)command2.ExecuteScalar();
+            if(flag1 != null)
+            {
+                if (flag1.ToString() != label.Text)
+                {
+                    string query1 = $"UPDATE {name}{surname}Table SET PlayList = '{label.Text}' WHERE id = @id";
+                    SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
+                    command1.Parameters.AddWithValue("@id", idcar);
+                    command1.ExecuteNonQuery();
+                    dataBase.closedConnection();
+                    MessageBox.Show($"Карточка добавлена в плейлист: {label.Text}");
+                } else
+                {
+                    MessageBox.Show("Уже состоит в этом плейлисте");
+                }
+                
+            } else
+            {
+                string query1 = $"UPDATE {name}{surname}Table SET PlayList = '{label.Text}' WHERE id = @id";
+                SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
+                command1.Parameters.AddWithValue("@id", idcar);
+                command1.ExecuteNonQuery();
+                dataBase.closedConnection();
+                MessageBox.Show($"Карточка добавлена в плейлист: {label.Text}");
+            }
+
+            
         }
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown numericUpDown = (NumericUpDown)sender;
             decimal value = numericUpDown.Value;
             idcar = (int)numericUpDown.Tag;
-            //MessageBox.Show("----" + value + name + surname + idcar);
             dataBase.openConnection();
             string query1 = $"UPDATE {name}{surname}Table SET Score = {value} WHERE id = @id";
             SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());
             command1.Parameters.AddWithValue("@id", idcar);
             command1.ExecuteNonQuery();
-            dataBase.closedConnection();
+            dataBase.closedConnection();      
         }
         private void FavoritesButton_Click(object sender, EventArgs e)
         {
@@ -432,8 +458,7 @@ namespace TaskManager
             pictureBox2.Focus();
             if (FavoriteNow == 0)
             {
-                dataBase.openConnection();
-                pictureBox2.Image = Image.FromFile("../../picture/LikeFill.png");
+                pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeFill.png");
                 FavoriteNow = 1;
 
                 string query1 = $"UPDATE [{name}{surname}Table] SET Favorites = 1 WHERE id = @id";
@@ -441,12 +466,11 @@ namespace TaskManager
                 command1.Parameters.AddWithValue("@id", idcar);
 
                 command1.ExecuteNonQuery();
-                dataBase.closedConnection();
 
             }
             else
             {
-                pictureBox2.Image = Image.FromFile("../../picture/LikeEmpty.png");
+                pictureBox2.Image = Image.FromFile("C:/Users/Артем/source/repos/TaskManager/TaskManager/picture/LikeEmpty.png");
                 FavoriteNow = 0;
                 string query1 = $"UPDATE {name}{surname}Table SET Favorites = 0 WHERE id = @id";
                 SqlCommand command1 = new SqlCommand(query1, dataBase.getConnection());

@@ -144,7 +144,7 @@
             this.selectionsButton.Name = "selectionsButton";
             this.selectionsButton.Size = new System.Drawing.Size(168, 54);
             this.selectionsButton.TabIndex = 10;
-            this.selectionsButton.Text = "Коллекции";
+            this.selectionsButton.Text = "Плейлисты";
             this.selectionsButton.UseVisualStyleBackColor = false;
             this.selectionsButton.Click += new System.EventHandler(this.selectionsButton_Click);
             // 
@@ -177,7 +177,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.AutoScrollMargin = new System.Drawing.Size(1000, 1000);
+            this.flowLayoutPanel1.AutoScrollMargin = new System.Drawing.Size(200, 200);
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.flowLayoutPanel1.BackgroundImage = global::TaskManager.Properties.Resources.BackGround2;
             this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;

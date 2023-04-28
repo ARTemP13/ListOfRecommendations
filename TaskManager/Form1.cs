@@ -179,18 +179,18 @@ namespace TaskManager
                 m.Body = $"Ваш новый пароль: {str21}";
                 m.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient("smtp.mail.ru", 587);
-                smtp.Credentials = new NetworkCredential("testerov9911@mail.ru", "XLFqLGzHAHf4PVF3anWE");
+                smtp.Credentials = new NetworkCredential("testerov9911@mail.ru", "hE7HteP7FWBxsqHy6v19");
                 smtp.EnableSsl = true;
                 panel2.Visible = false;
                 try
                 {
                     smtp.Send(m);
-                    MessageBox.Show("Сообщение отпралено");
+                    MessageBox.Show("Сообщение отправлено");
                     ChangePassword(str21);
                 }
-                catch
+                catch 
                 {
-                    MessageBox.Show("Сообщение не отпралено");
+                    MessageBox.Show("Сообщение не отправлено ");
                 }
                 Console.Read();
                 textBox4.Text = "";
@@ -226,22 +226,8 @@ namespace TaskManager
         {
             Random rnd = new Random();
 
-            string value = rnd.Next(100000,1000000).ToString();
-            int key = rnd.Next(1,127);
-            dataBase.openConnection();
-            SqlCommand sqlCom = new SqlCommand($"SELECT names FROM accounts_db WHERE emails = '{textBox4.Text}'", dataBase.getConnection());
-            string str = sqlCom.ExecuteScalar().ToString();
-            str = str + value;
-            char[] chars = str.ToCharArray();
-            for (int i = 0; i < str.Length; i++)
-            {
-                int c = str[i];
-                c = (c + key) % 120;
-                chars[i] = (char)c;
-            }
-            string str1 = new string(chars);
-            dataBase.closedConnection();
-            return str1;
+            string value = rnd.Next(1000000,100000000).ToString();
+            return value;
 
         }
         private void ChangePassword(string newPassword)

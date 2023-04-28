@@ -109,9 +109,9 @@
             this.ReccomendationLabel.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ReccomendationLabel.Location = new System.Drawing.Point(469, 22);
             this.ReccomendationLabel.Name = "ReccomendationLabel";
-            this.ReccomendationLabel.Size = new System.Drawing.Size(348, 80);
+            this.ReccomendationLabel.Size = new System.Drawing.Size(352, 80);
             this.ReccomendationLabel.TabIndex = 15;
-            this.ReccomendationLabel.Text = "Коллекции";
+            this.ReccomendationLabel.Text = "Плейлисты";
             // 
             // FavoritesButton
             // 

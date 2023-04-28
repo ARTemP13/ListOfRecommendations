@@ -40,10 +40,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -101,6 +101,7 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(36, 224);
+            this.textBox2.MaxLength = 49;
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
@@ -141,6 +142,7 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(36, 77);
+            this.textBox1.MaxLength = 49;
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(399, 52);
@@ -194,10 +196,23 @@
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.textBox4);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(183, 204);
+            this.panel2.Location = new System.Drawing.Point(182, 194);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(537, 345);
             this.panel2.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(507, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(30, 29);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "X";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // button5
             // 
@@ -221,6 +236,7 @@
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(74, 159);
+            this.textBox4.MaxLength = 49;
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(399, 52);
@@ -238,19 +254,6 @@
             this.label4.Size = new System.Drawing.Size(413, 45);
             this.label4.TabIndex = 0;
             this.label4.Text = "Восстановить пароль";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(507, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 29);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "X";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // Form1
             // 
